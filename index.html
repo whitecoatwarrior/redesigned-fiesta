@@ -1,0 +1,3219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electric Potential & Capacitance - MDCAT, HEC, AKU & Competition Exams</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- KaTeX for equations -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <style>
+        :root {
+            --primary: #1a56db;
+            --secondary: #0ea5e9;
+            --accent: #10b981;
+            --light: #f8fafc;
+            --dark: #1e3a8a;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --info: #3b82f6;
+            --background: #f0f9ff;
+            --card-bg: #ffffff;
+            --text-primary: #1e3a8a;
+            --text-secondary: #4b5563;
+            --border-radius: 5px;
+            --shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --transition: all 0.2s ease;
+            --compact-spacing: 3px;
+        }
+
+        .dark-mode {
+            --primary: #3b82f6;
+            --secondary: #0ea5e9;
+            --accent: #10b981;
+            --light: #1e293b;
+            --dark: #f1f5f9;
+            --background: #0f172a;
+            --card-bg: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+            position: relative;
+            font-size: 8.1px;
+            line-height: 1.1;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4.86px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 6.48px;
+            border-radius: var(--border-radius);
+            margin-bottom: 6.48px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 60%);
+            animation: pulse 15s infinite linear;
+        }
+
+        @keyframes pulse {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 4.32px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo h1 {
+            font-size: 0.972rem;
+            font-weight: 800;
+            margin-bottom: 1.62px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo p {
+            font-weight: 500;
+            font-size: 0.486rem;
+            opacity: 0.9;
+        }
+
+        .header-content {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .header-content h1 {
+            font-size: 0.648rem;
+            margin-bottom: 4.32px;
+            color: #ffd700;
+        }
+
+        .header-content p {
+            font-size: 0.486rem;
+            line-height: 1.1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Hamburger Menu */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 15.12px;
+            height: 15.12px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            position: absolute;
+            top: 6.48px;
+            right: 6.48px;
+            z-index: 10;
+        }
+
+        .menu-toggle span {
+            width: 15.12px;
+            height: 1.62px;
+            background: white;
+            border-radius: 1.62px;
+            transition: var(--transition);
+            position: relative;
+            transform-origin: center;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(3.24px, 3.24px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(4.32px, -4.32px);
+        }
+
+        /* Navigation Styles */
+        .nav-container {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 6.48px;
+            position: relative;
+        }
+
+        .nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4.86px;
+        }
+
+        .nav-header h2 {
+            font-size: 0.729rem;
+        }
+
+        .theme-toggle {
+            background: var(--card-bg);
+            border: none;
+            width: 25.92px;
+            height: 12.96px;
+            border-radius: 12.96px;
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 1.62px;
+            box-shadow: var(--shadow);
+        }
+
+        .theme-toggle span {
+            width: 9.72px;
+            height: 9.72px;
+            border-radius: 50%;
+            background: var(--primary);
+            position: absolute;
+            transition: var(--transition);
+            left: 1.62px;
+        }
+
+        .theme-toggle.dark span {
+            left: calc(100% - 11.34px);
+        }
+
+        .main-nav {
+            display: flex;
+            gap: 2.43px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 2.43px;
+            padding: 4.05px 4.86px;
+            background: var(--card-bg);
+            border: none;
+            border-radius: var(--border-radius);
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.486rem;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 1.5px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Panel Styles */
+        .panel {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 4.86px;
+            box-shadow: var(--shadow);
+            margin-bottom: 6.48px;
+            transition: var(--transition);
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4.86px;
+            padding-bottom: 4.05px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .panel-title {
+            font-size: 0.648rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 2.43px;
+        }
+
+        .panel-actions {
+            display: flex;
+            gap: 2.43px;
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2.43px;
+            padding: 2.43px 4.86px;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            font-size: 0.486rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #0da271;
+            transform: translateY(-1px);
+        }
+
+        /* Card Styles */
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 4.86px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            margin-bottom: 4.86px;
+        }
+
+        .card:hover {
+            transform: translateY(-1.5px);
+            box-shadow: 0 2.43px 6.48px rgba(0, 0, 0, 0.05);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 2.43px;
+            margin-bottom: 4.05px;
+            padding-bottom: 4.05px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .card-title {
+            font-size: 0.567rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            gap: 4.86px;
+        }
+
+        .grid-2 {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .grid-3 {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        /* Footer Styles */
+        footer {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            color: white;
+            padding: 9.72px 0;
+            margin-top: auto;
+            font-size: 0.486rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 6.48px;
+            margin-top: 6.48px;
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            animation: fadeIn 0.3s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6.48px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .slide-in {
+            animation: slideIn 0.3s ease forwards;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-6.48px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* MCQ Card Styles */
+        .mcq-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .mcq-info {
+            flex-grow: 1;
+            margin-bottom: 4.86px;
+        }
+
+        .mcq-id {
+            font-weight: 700;
+            font-size: 0.567rem;
+            color: var(--primary);
+            margin-bottom: 1.62px;
+        }
+
+        .mcq-subject {
+            font-size: 0.486rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.43px;
+        }
+
+        .mcq-chapter {
+            font-size: 0.486rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.43px;
+            font-weight: 600;
+        }
+
+        .mcq-details {
+            font-size: 0.405rem;
+            color: var(--text-secondary);
+            margin-bottom: 4.05px;
+        }
+
+        .start-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            padding: 4.05px 6.48px;
+            font-weight: 600;
+            font-size: 0.486rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            text-decoration: none;
+            display: block;
+        }
+
+        .start-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-1px);
+        }
+
+        /* Stats Panel */
+        .stats-panel {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(64.8px, 1fr));
+            gap: 4.05px;
+            margin-bottom: 4.86px;
+        }
+
+        .stat-item {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 4.05px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-value {
+            font-size: 0.729rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 0.405rem;
+            color: var(--text-secondary);
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Explanation Section Styles */
+        .explanation-section {
+            margin-bottom: 12.15px;
+            padding: 9.72px;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .explanation-header {
+            display: flex;
+            align-items: center;
+            gap: 6.48px;
+            margin-bottom: 6.48px;
+            padding-bottom: 4.86px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .explanation-icon {
+            width: 24.3px;
+            height: 24.3px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.81rem;
+        }
+
+        .explanation-title {
+            font-size: 0.729rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .explanation-content {
+            font-size: 0.567rem;
+            line-height: 1.4;
+            color: var(--text-primary);
+        }
+
+        .explanation-content h4 {
+            font-size: 0.648rem;
+            margin: 6.48px 0 3.24px;
+            color: var(--primary);
+        }
+
+        .explanation-content p {
+            margin-bottom: 4.86px;
+        }
+
+        .explanation-content ul, .explanation-content ol {
+            margin-left: 16.2px;
+            margin-bottom: 6.48px;
+        }
+
+        .explanation-content li {
+            margin-bottom: 2.43px;
+        }
+
+        .mechanism-diagram {
+            text-align: center;
+            margin: 9.72px 0;
+            padding: 6.48px;
+            background: var(--light);
+            border-radius: var(--border-radius);
+        }
+
+        .key-concept {
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 3.24px solid var(--primary);
+            padding: 6.48px;
+            margin: 6.48px 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+
+        .key-concept-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 3.24px;
+            font-size: 0.567rem;
+        }
+
+        /* MCQ Detail Styles */
+        .mcq-detail-container {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 9.72px;
+            margin-bottom: 9.72px;
+            box-shadow: var(--shadow);
+        }
+
+        .mcq-question {
+            font-size: 0.648rem;
+            font-weight: 600;
+            margin-bottom: 6.48px;
+            color: var(--text-primary);
+            line-height: 1.4;
+        }
+
+        .mcq-options {
+            margin-bottom: 9.72px;
+        }
+
+        .mcq-option {
+            padding: 4.05px 6.48px;
+            margin-bottom: 3.24px;
+            border-radius: var(--border-radius);
+            background: var(--light);
+            font-size: 0.567rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border-left: 2.43px solid transparent;
+        }
+
+        .mcq-option:hover {
+            background: rgba(26, 86, 219, 0.05);
+        }
+
+        .mcq-option.selected {
+            border-left-color: var(--primary);
+            background: rgba(26, 86, 219, 0.1);
+        }
+
+        .mcq-option.correct {
+            border-left-color: var(--success);
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .mcq-option.incorrect {
+            border-left-color: #dc3545;
+            background: rgba(220, 53, 69, 0.1);
+        }
+
+        .mcq-explanation {
+            margin-top: 9.72px;
+            padding: 6.48px;
+            border-radius: var(--border-radius);
+            background: var(--light);
+            font-size: 0.486rem;
+            line-height: 1.4;
+            display: none;
+        }
+
+        .mcq-explanation.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .explanation-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 4.05px;
+            font-size: 0.567rem;
+        }
+
+        .mcq-actions {
+            display: flex;
+            gap: 4.86px;
+            margin-top: 6.48px;
+        }
+
+        /* Progress Tracking */
+        .progress-section {
+            margin-top: 9.72px;
+            padding: 6.48px;
+            background: var(--light);
+            border-radius: var(--border-radius);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4.86px;
+        }
+
+        .progress-title {
+            font-size: 0.648rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .progress-stats {
+            font-size: 0.486rem;
+            color: var(--text-secondary);
+        }
+
+        .progress-bar {
+            height: 6.48px;
+            background: #e5e7eb;
+            border-radius: 3.24px;
+            overflow: hidden;
+            margin-bottom: 4.86px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--success);
+            border-radius: 3.24px;
+            transition: width 0.5s ease;
+        }
+
+        /* Welcome Animation */
+        .welcome-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #1e3a8a, #1a56db);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            opacity: 1;
+            transition: opacity 0.8s ease;
+        }
+
+        .welcome-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .welcome-content {
+            text-align: center;
+            color: white;
+            padding: 12.15px;
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 9.72px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4.86px 16.2px rgba(0, 0, 0, 0.2);
+        }
+
+        .welcome-content h2 {
+            font-size: 1.458rem;
+            margin-bottom: 9.72px;
+            background: linear-gradient(90deg, #ffd700, #ffed4e, #ffd700);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: shimmer 2.5s infinite;
+        }
+
+        .welcome-content p {
+            font-size: 0.648rem;
+            margin-bottom: 12.15px;
+            line-height: 1.4;
+            opacity: 0.9;
+        }
+
+        .welcome-logo {
+            font-size: 2.025rem;
+            margin-bottom: 12.15px;
+            color: #ffd700;
+            text-shadow: 0 0 12.15px rgba(255, 215, 0, 0.5);
+            animation: pulseWelcome 1.5s infinite;
+        }
+
+        @keyframes pulseWelcome {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -100% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 12.15px;
+            right: 12.15px;
+            background: #25D366;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.053rem;
+            box-shadow: 0 2.43px 6.48px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 3.24px 8.1px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Conceptual Q&A Styles */
+        .conceptual-qa {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 8.1px;
+            margin-bottom: 8.1px;
+            border-left: 3.24px solid var(--accent);
+        }
+
+        .qa-question {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 4.05px;
+            font-size: 0.567rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 4.05px;
+        }
+
+        .qa-question i {
+            color: var(--accent);
+            margin-top: 1.62px;
+        }
+
+        .qa-answer {
+            font-size: 0.486rem;
+            line-height: 1.3;
+            color: var(--text-secondary);
+            padding-left: 12.15px;
+        }
+
+        .qa-answer strong {
+            color: var(--primary);
+        }
+
+        /* Equation styling */
+        .equation {
+            background: rgba(0, 0, 0, 0.05);
+            padding: 4.86px;
+            border-radius: var(--border-radius);
+            margin: 4.86px 0;
+            text-align: center;
+            font-family: 'KaTeX_Main', 'Times New Roman', serif;
+        }
+
+        .dark-mode .equation {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .katex {
+            font-size: 1em !important;
+        }
+
+        /* Exam Specific Info */
+        .exam-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(97.2px, 1fr));
+            gap: 4.86px;
+            margin-bottom: 9.72px;
+        }
+
+        .exam-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 6.48px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .exam-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 3.24px 8.1px rgba(0, 0, 0, 0.1);
+        }
+
+        .exam-icon {
+            width: 24.3px;
+            height: 24.3px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 4.05px;
+            font-size: 0.81rem;
+        }
+
+        .exam-name {
+            font-weight: 700;
+            font-size: 0.486rem;
+            color: var(--primary);
+            margin-bottom: 1.62px;
+        }
+
+        .exam-desc {
+            font-size: 0.405rem;
+            color: var(--text-secondary);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .grid-3 {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+            }
+            
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .main-nav {
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                background: var(--card-bg);
+                border-radius: var(--border-radius);
+                box-shadow: var(--shadow);
+                padding: 4.86px;
+                z-index: 100;
+                width: 129.6px;
+                display: none;
+            }
+            
+            .main-nav.active {
+                display: flex;
+            }
+            
+            .nav-btn {
+                width: 100%;
+                justify-content: flex-start;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 4.05px;
+            }
+            
+            header {
+                padding: 4.86px;
+            }
+            
+            .logo h1 {
+                font-size: 0.81rem;
+            }
+            
+            .panel {
+                padding: 4.86px;
+            }
+            
+            .btn {
+                width: 100%;
+                margin-bottom: 2.43px;
+            }
+            
+            .panel-actions {
+                flex-direction: column;
+            }
+            
+            .welcome-content {
+                padding: 9.72px;
+                margin: 6.48px;
+            }
+            
+            .welcome-content h2 {
+                font-size: 1.053rem;
+            }
+            
+            .welcome-content p {
+                font-size: 0.567rem;
+            }
+            
+            .welcome-logo {
+                font-size: 1.62rem;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 3.24px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--light);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 1.62px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary);
+        }
+
+        /* Competition Case Box */
+        .competition-case {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(251, 191, 36, 0.05));
+            border: 1.62px solid var(--warning);
+            border-radius: var(--border-radius);
+            padding: 8.1px;
+            margin: 9.72px 0;
+        }
+
+        .competition-case-title {
+            font-weight: 700;
+            color: var(--warning);
+            font-size: 0.567rem;
+            display: flex;
+            align-items: center;
+            gap: 4.05px;
+            margin-bottom: 4.86px;
+        }
+
+        /* Imaginary Scenario */
+        .imaginary-scenario {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(52, 211, 153, 0.05));
+            border: 1.62px solid var(--accent);
+            border-radius: var(--border-radius);
+            padding: 8.1px;
+            margin: 9.72px 0;
+        }
+
+        .imaginary-title {
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 0.567rem;
+            display: flex;
+            align-items: center;
+            gap: 4.05px;
+            margin-bottom: 4.86px;
+        }
+
+        /* Direct MCQ Points */
+        .direct-points {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(96, 165, 250, 0.05));
+            border-radius: var(--border-radius);
+            padding: 8.1px;
+            margin: 9.72px 0;
+        }
+
+        .direct-points-title {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 0.567rem;
+            margin-bottom: 4.86px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Welcome Animation -->
+    <div class="welcome-overlay" id="welcome-overlay">
+        <div class="welcome-content scale-in">
+            <div class="welcome-logo">
+                <i class="fas fa-bolt"></i>
+            </div>
+            <h2>Electric Potential & Capacitance Portal</h2>
+            <p>Master Electric Potential, Capacitance for MDCAT, NUMS, HEC, AKU & Competition Exams with 80 MCQs and 30 Conceptual Q&A.</p>
+            <button class="btn btn-primary" id="start-btn" style="padding: 4.86px 9.72px; font-size: 0.648rem;">
+                Get Started <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- WhatsApp Button -->
+    <a href="https://whatsapp.com/channel/0029VbBeueg0QeajGumGWb0f" class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <div class="container">
+        <header>
+            <button class="menu-toggle" id="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <div class="logo">
+                <h1>Electric Potential & Capacitance Portal</h1>
+                <p>MDCAT | NUMS | HEC | AKU | Competition Exam Preparation</p>
+            </div>
+            
+            <div class="header-content">
+                <h1>Comprehensive Electric Potential & Capacitance with 80 MCQs & 30 Conceptual Q&A</h1>
+                <p>Master key concepts with detailed explanations, exceptional cases, and interactive questions</p>
+            </div>
+        </header>
+
+        <!-- Exam Specific Information -->
+        <div class="panel fade-in">
+            <div class="panel-header">
+                <h3 class="panel-title"><i class="fas fa-graduation-cap"></i> Exam Preparation Focus</h3>
+            </div>
+            <div class="exam-info">
+                <div class="exam-card">
+                    <div class="exam-icon">
+                        <i class="fas fa-stethoscope"></i>
+                    </div>
+                    <div class="exam-name">MDCAT/NUMS</div>
+                    <div class="exam-desc">15-20% weightage in Physics</div>
+                </div>
+                <div class="exam-card">
+                    <div class="exam-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <div class="exam-name">HEC Test</div>
+                    <div class="exam-desc">Advanced potential problems</div>
+                </div>
+                <div class="exam-card">
+                    <div class="exam-icon">
+                        <i class="fas fa-hospital"></i>
+                    </div>
+                    <div class="exam-name">AKU Test</div>
+                    <div class="exam-desc">Medical Entry: Capacitance focus</div>
+                </div>
+                <div class="exam-card">
+                    <div class="exam-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="exam-name">Competition</div>
+                    <div class="exam-desc">Olympiad Level: Complex cases</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-container">
+            <div class="nav-header">
+                <h2>Navigation</h2>
+                <button class="theme-toggle" id="theme-toggle">
+                    <span></span>
+                </button>
+            </div>
+            
+            <div class="main-nav" id="main-nav">
+                <button class="nav-btn active" data-tab="potential">
+                    <i class="fas fa-bolt"></i>
+                    <span>Electric Potential</span>
+                </button>
+                <button class="nav-btn" data-tab="potential-difference">
+                    <i class="fas fa-exchange-alt"></i>
+                    <span>Potential Difference</span>
+                </button>
+                <button class="nav-btn" data-tab="work-done">
+                    <i class="fas fa-calculator"></i>
+                    <span>Work Done</span>
+                </button>
+                <button class="nav-btn" data-tab="gradient">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Field-Potential</span>
+                </button>
+                <button class="nav-btn" data-tab="equipotential">
+                    <i class="fas fa-layer-group"></i>
+                    <span>Equipotential</span>
+                </button>
+                <button class="nav-btn" data-tab="electronvolt">
+                    <i class="fas fa-atom"></i>
+                    <span>Electron Volt</span>
+                </button>
+                <button class="nav-btn" data-tab="capacitor">
+                    <i class="fas fa-battery-three-quarters"></i>
+                    <span>Capacitor</span>
+                </button>
+                <button class="nav-btn" data-tab="progress">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Progress</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Stats Panel -->
+        <div class="stats-panel">
+            <div class="stat-item">
+                <div class="stat-value" id="total-mcqs">80</div>
+                <div class="stat-label">Total MCQs</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="conceptual-qa">30</div>
+                <div class="stat-label">Conceptual Q&A</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="completed-mcqs">0</div>
+                <div class="stat-label">Completed</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="accuracy">0%</div>
+                <div class="stat-label">Accuracy</div>
+            </div>
+        </div>
+
+        <!-- Electric Potential Tab -->
+        <div class="tab-content active" id="potential-tab">
+            <!-- Explanation Section -->
+            <div class="explanation-section fade-in">
+                <div class="explanation-header">
+                    <div class="explanation-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="explanation-title">Electric Potential: Advanced Concepts & Imaginary Cases</div>
+                </div>
+                
+                <div class="explanation-content">
+                    <h4>Core Concept: Scalar Potential Field</h4>
+                    <p>Electric potential $V$ at a point is the <strong>work done per unit positive charge</strong> to bring a test charge from infinity to that point. Unlike electric field (vector), potential is scalar - easier to calculate via algebraic addition.</p>
+                    
+                    <div class="key-concept">
+                        <div class="key-concept-title">Fundamental Equation: $V = \frac{kQ}{r}$ (Point Charge)</div>
+                        <p>For point charge $Q$, potential at distance $r$ is $V = \frac{1}{4\pi\epsilon_0}\frac{Q}{r}$. For multiple charges: $V_{\text{total}} = \sum V_i$ (scalar sum).</p>
+                    </div>
+
+                    <div class="competition-case">
+                        <div class="competition-case-title"><i class="fas fa-trophy"></i> Competition Level Case: Non-Spherical Potential Distribution</div>
+                        <p><strong>Scenario:</strong> Ellipsoidal conductor with non-uniform charge distribution. Unlike sphere, potential isn't constant on surface. Maximum at sharper ends (higher curvature). Electric field inside remains zero but surface potential varies - crucial for designing high-voltage equipment.</p>
+                    </div>
+
+                    <div class="imaginary-scenario">
+                        <div class="imaginary-title"><i class="fas fa-brain"></i> Imaginary Scenario: Quantum Potential Well</div>
+                        <p><strong>Imagine</strong> an electron trapped between two infinite potential barriers 1nm apart. Classical: electron can't escape. Quantum: wavefunction penetrates barriers (tunneling). The probability density $|\psi|^2$ relates to "effective potential" seen by electron. Competition question: How would macroscopic potential concept apply here?</p>
+                    </div>
+
+                    <h4>MDCAT/NUMS Critical Points:</h4>
+                    <ul>
+                        <li><strong>Potential of conducting sphere:</strong> Constant inside, $V = kQ/R$ on surface</li>
+                        <li><strong>Potential of spherical shell:</strong> Same as sphere for exterior points</li>
+                        <li><strong>Potential difference</strong> drives current in circuits</li>
+                        <li><strong>Zero potential reference</strong> usually at infinity</li>
+                    </ul>
+
+                    <div class="key-concept">
+                        <div class="key-concept-title">Exceptional Case: Potential of Infinite Line Charge</div>
+                        <p>For infinite line charge with linear density $\lambda$, potential doesn't approach zero at infinity (logarithmic divergence). We choose reference at finite distance $r_0$: $V(r) = -\frac{\lambda}{2\pi\epsilon_0}\ln\left(\frac{r}{r_0}\right)$. This shows limitation of "infinity as zero" convention.</p>
+                    </div>
+
+                    <div class="direct-points">
+                        <div class="direct-points-title">Direct MCQ Points (Memorize):</div>
+                        <ol>
+                            <li>Potential due to point charge: $V \propto 1/r$</li>
+                            <li>Potential due to dipole on axial line: $V \propto 1/r^2$</li>
+                            <li>Potential inside conductor: Constant</li>
+                            <li>Potential energy of system: $U = \frac{1}{2}\sum q_i V_i$</li>
+                            <li>1 Volt = 1 Joule/Coulomb</li>
+                        </ol>
+                    </div>
+
+                    <div class="equation">
+                        $\text{Relation Chain: } F = qE \rightarrow W = q\Delta V \rightarrow \Delta V = -\int E\cdot dr$
+                    </div>
+
+                    <h4>HEC/AKU Advanced Concepts:</h4>
+                    <ul>
+                        <li><strong>Potential of continuous charge distributions:</strong> Use superposition principle</li>
+                        <li><strong>Potential of ring on axis:</strong> $V = \frac{kQ}{\sqrt{R^2 + x^2}}$</li>
+                        <li><strong>Potential of disk:</strong> More complex, requires surface integration (avoided)</li>
+                        <li><strong>Potential energy of charge system:</strong> $U = k\sum_{i<j}\frac{q_i q_j}{r_{ij}}$</li>
+                    </ul>
+
+                    <div class="competition-case">
+                        <div class="competition-case-title"><i class="fas fa-trophy"></i> Competition Trick: Potential Scaling</div>
+                        <p>If all distances in a system are scaled by factor $\alpha$, potentials scale by $1/\alpha$ for point charges, but differently for dipoles ($1/\alpha^2$), quadrupoles ($1/\alpha^3$), etc. This helps solve "what if" questions without calculation.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Conceptual Q&A Section -->
+            <div class="panel fade-in">
+                <div class="panel-header">
+                    <h3 class="panel-title"><i class="fas fa-lightbulb"></i> Conceptual Understanding (5/30)</h3>
+                </div>
+                <div class="conceptual-qa">
+                    <div class="qa-question"><i class="fas fa-question-circle"></i> If electric potential is zero at a point, must electric field be zero there?</div>
+                    <div class="qa-answer"><strong>Answer:</strong> No. Example: Midpoint between equal opposite charges has $V=0$ but $E\neq0$ (nonzero field). Electric field depends on potential gradient ($E = -dV/dr$), not value. At $V=0$ point, if potential changes spatially ($dV/dr \neq 0$), field exists.</div>
+                </div>
+                <div class="conceptual-qa">
+                    <div class="qa-question"><i class="fas fa-question-circle"></i> Why is potential inside a charged conductor constant?</div>
+                    <div class="qa-answer"><strong>Answer:</strong> In electrostatic equilibrium, charges redistribute until electric field inside conductor is zero. Since $E = -dV/dr$, zero field implies constant potential ($dV/dr=0$). All points inside conductor and on surface have same potential. This explains Faraday cage protection.</div>
+                </div>
+                <div class="conceptual-qa">
+                    <div class="qa-question"><i class="fas fa-question-circle"></i> Can potential be negative? Give physical meaning.</div>
+                    <div class="qa-answer"><strong>Answer:</strong> Yes. Negative potential means work must be done by external agent to bring positive test charge from infinity. For negative point charge, $V$ is negative everywhere. In atoms, electron has negative potential energy. Only potential differences matter physically.</div>
+                </div>
+                <div class="conceptual-qa">
+                    <div class="qa-question"><i class="fas fa-question-circle"></i> How does potential vary inside a uniformly charged non-conducting sphere?</div>
+                    <div class="qa-answer"><strong>Answer:</strong> Inside ($r < R$): $V(r) = \frac{kQ}{2R}\left(3 - \frac{r^2}{R^2}\right)$ (parabolic). At center: $V_{\text{center}} = \frac{3}{2}V_{\text{surface}}$. Outside ($r > R$): $V(r) = kQ/r$ (like point charge). Continuous at $r=R$.</div>
+                </div>
+                <div class="conceptual-qa">
+                    <div class="qa-question"><i class="fas fa-question-circle"></i> What is physical significance of electric potential?</div>
+                    <div class="qa-answer"><strong>Answer:</strong> 1) Work done per unit charge. 2) Determines current flow direction (high to low potential). 3) Related to potential energy: $U = qV$. 4) Easier to calculate than electric field (scalar vs vector). 5) Fundamental in circuit theory (voltage).</div>
+                </div>
+            </div>
+            
+            <!-- Progress Section -->
+            <div class="progress-section">
+                <div class="progress-header">
+                    <div class="progress-title">Electric Potential MCQs Progress</div>
+                    <div class="progress-stats"><span id="potential-completed">0</span>/15 completed</div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="potential-progress" style="width: 0%"></div>
+                </div>
+            </div>
+            
+            <!-- MCQs Section -->
+            <div class="panel fade-in">
+                <div class="panel-header">
+                    <h3 class="panel-title"><i class="fas fa-bolt"></i> Electric Potential MCQs (15)</h3>
+                    <div class="panel-actions">
+                        <button class="btn btn-primary" id="refresh-potential">
+                            <i class="fas fa-sync-alt"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="grid grid-2" id="potential-mcqs-container">
+                    <!-- MCQs will be populated here by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Potential Difference Tab -->
+        <div class="tab-content" id="potential-difference-tab">
+            <!-- Explanation Section -->
+            <div class="explanation-section fade-in">
+                <div class="explanation-header">
+                    <div class="explanation-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <div class="explanation-title">Potential Difference: Advanced Applications</div>
+                </div>
+                
+                <div class="explanation-content">
+                    <h4>Core Definition & Significance</h4>
+                    <p>Potential difference (PD) or voltage is the <strong>work done per unit charge</strong> moving between two points. It's the driving force for electric current. PD causes charges to accelerate in vacuum and drift in conductors.</p>
+                    
+                    <div class="key-concept">
+                        <div class="key-concept-title">Fundamental Equation: $\Delta V = V_B - V_A = \frac{W_{A\to B}}{q}$</div>
+                        <p>For uniform field: $\Delta V = Ed\cos\theta$. For parallel plates: $\Delta V = \frac{\sigma d}{\epsilon_0} = \frac{Qd}{\epsilon_0 A}$.</p>
+                    </div>
+
+                    <div class="competition-case">
+                        <div class="competition-case-title"><i class="fas fa-trophy"></i> Competition Case: PD in Non-Uniform Fields</div>
+                        <p><strong>Scenario:</strong> PD between points in dipole field. Unlike uniform field ($\Delta V = Ed$), here PD depends on path taken. For conservative electrostatic fields, PD is path-independent. But if magnetic field changes (Faraday), induced electric field makes PD path-dependent - key for generators.</p>
+                    </div>
+
+                    <div class="imaginary-scenario">
+                        <div class="imaginary-title"><i class="fas fa-brain"></i> Imaginary Scenario: Superconducting Loop</div>
+                        <p><strong>Imagine</strong> a superconducting ring in changing magnetic field. According to Faraday, $\oint E\cdot dl = -d\Phi/dt$. But superconductor has $E=0$ inside. Resolution: Surface currents develop to cancel changing flux. PD around loop is zero but current persists (persistent current). This challenges classical PD concepts.</p>
+                    </div>
+
+                    <h4>MDCAT/NUMS Critical Applications:</h4>
+                    <ul>
+                        <li><strong>Battery EMF:</strong> Maximum PD when no current flows</li>
+                        <li><strong>Ohm's Law:</strong> $V = IR$ for ohmic conductors</li>
+                        <li><strong>Capacitor charging:</strong> PD increases as $V = V_0(1-e^{-t/RC})$</li>
+                        <li><strong>Kirchhoff's Voltage Law:</strong> Sum of PDs around closed loop = 0</li>
+                    </ul>
+
+                    <div class="key-concept">
+                        <div class="key-concept-title">Exceptional Case: PD Across Open Circuit</div>
+                        <p>When voltmeter with high resistance measures PD across resistor with open switch, voltmeter reads battery EMF, not resistor PD. Reason: No current through resistor, so no PD drop ($V=IR=0$). Voltmeter draws tiny current, completing circuit through its high resistance.</p>
+                    </div>
+
+                    <div class="direct-points">
+                        <div class="direct-points-title">Direct MCQ Points (Memorize):</div>
+                        <ol>
+                            <li>1 Volt = 1 Joule/Coulomb</li>
+                            <li>PD drives current flow</li>
+                            <li>PD across capacitor plates: $V = Q/C$</li>
+                            <li>PD across parallel plates: $V = Ed$</li>
+                            <li>Terminal PD = EMF - Ir (with internal resistance)</li>
+                        </ol>
+                    </div>
+
+                    <div class="equation">
+                        $\text{Energy-Voltage Relation: } \Delta K = q\Delta V \quad (\text{for charge } q \text{ accelerated})$
+                    </div>
+
+                    <h4>HEC/AKU Advanced Topics:</h4>
+                    <ul>
+                        <li><strong>Electrochemical potential:</strong> In batteries, chemical reactions maintain PD</li>
+                        <li><strong>Contact potential:</strong> Different metals in contact develop small PD</li>
+                        <li><strong>Thermoelectric effect:</strong> Temperature difference creates PD</li>
+                        <li><strong>Hall voltage:</strong> $V_H = \frac{IB}{ned}$ in magnetic field</li>
+                    </ul>
+
+                    <div class="competition-case">
+                        <div class="competition-case-title"><i class="fas fa-trophy"></i> Competition Trick: PD in Complex Circuits</div>
+                        <p>For ladder networks (infinite resistor chains), use symmetry or recurrence relations. For example, infinite network of identical resistors: input resistance $R_{\text{in}} = R + \frac{R R_{\text{in}}}{R + R_{\text{in}}}$. Solve quadratic: $R_{\text{in}} = R(1+\sqrt{5})/2$ (golden ratio!).</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Conceptual Q&A Section -->
+            <div class="panel fade-in">
+                <div class="panel-header">
+                    <h3 class="panel-title"><i class="fas fa-lightbulb"></i> Conceptual Understanding (5/30)</h3>
+                </div>
+                <div class="conceptual-qa">
+                    <div class="qa-question"><i class="fas fa-question-circle"></i> Why is PD more important than absolute potential?</div>
+                    <div class="qa-answer"><strong>Answer:</strong> Absolute potential depends on arbitrary reference (usually infinity). Physical effects depend on PD: current flows due to PD, charges accelerate through PD, energy transfers occur. In circuits, only PD matters. Bird on high voltage wire safe because no PD across its feet.</div>
+                </div>
+                <div class="conceptual-qa">
+                    <div class="qa-question"><i class="fas fa-question-circle"></i> Can PD exist without current flow?</div>
+                    <div class="qa-answer"><strong>Answer:</strong> Yes. Examples: 1) Across capacitor plates (open circuit). 2) Battery terminals with switch open. 3) Across p-n junction in reverse bias (very small leakage current). PD is cause, current is effect. PD can exist without current, but steady current requires PD.</div>
+                </div>
+                <div class="conceptual-qa">
+                    <div class="qa-question"><i class="fas fa-question-circle"></i> How does dielectric affect PD across capacitor?</div>
+                    <div class="qa-answer"><strong>Answer:</strong> With battery connected (constant PD): PD unchanged, charge increases by $\epsilon_r$. With battery disconnected (constant charge): PD decreases by factor $1/\epsilon_r$. Dielectric reduces electric field $E = E_0/\epsilon_r$, so for same plate separation $d$, $\Delta V = Ed$ decreases.</div>
+                </div>
+                <div class="conceptual-qa">
+                    <div class="qa-question"><i class="fas fa-question-circle"></i> What is significance of negative PD?</div>
+                    <div class="qa-answer"><strong>Answer:</strong> Negative PD means potential decreases in direction considered. For electron flow (negative charge), negative PD causes current in opposite direction to positive charge flow. In AC circuits, PD changes sign periodically. Negative PD across component means it's consuming energy (like resistor), positive means supplying (like battery).</div>
+                </div>
+                <div class="conceptual-qa">
+                    <div class="qa-question"><i class="fas fa-question-circle"></i> Why does PD cause current but not always proportional?</div>
+                    <div class="qa-answer"><strong>Answer:</strong> For ohmic materials (metals), $I \propto V$ (Ohm's law). Non-ohmic: diodes ($I$ flows only one direction), superconductors ($I$ with $V=0$), gases (breakdown at high $V$). Current depends on material properties, temperature, history (hysteresis in ferromagnets).</div>
+                </div>
+            </div>
+            
+            <!-- Progress Section -->
+            <div class="progress-section">
+                <div class="progress-header">
+                    <div class="progress-title">Potential Difference MCQs Progress</div>
+                    <div class="progress-stats"><span id="potential-difference-completed">0</span>/12 completed</div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="potential-difference-progress" style="width: 0%"></div>
+                </div>
+            </div>
+            
+            <!-- MCQs Section -->
+            <div class="panel fade-in">
+                <div class="panel-header">
+                    <h3 class="panel-title"><i class="fas fa-exchange-alt"></i> Potential Difference MCQs (12)</h3>
+                    <div class="panel-actions">
+                        <button class="btn btn-primary" id="refresh-potential-difference">
+                            <i class="fas fa-sync-alt"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="grid grid-2" id="potential-difference-mcqs-container">
+                    <!-- MCQs will be populated here by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Work Done Tab -->
+        <div class="tab-content" id="work-done-tab">
+            <!-- Explanation Section -->
+            <div class="explanation-section fade-in">
+                <div class="explanation-header">
+                    <div class="explanation-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <div class="explanation-title">Work Done in Electric Field: Advanced Analysis</div>
+                </div>
+                
+                <div class="explanation-content">
+                    <h4>Fundamental Work-Energy Relationships</h4>
+                    <p>Work done by electric field on charge $q$ moving from point A to B: $W = q(V_B - V_A) = q\Delta V$. This is path-independent for electrostatic fields (conservative).</p>
+                    
+                    <div class="key-concept">
+                        <div class="key-concept-title">Key Equations:</div>
+                        <p>1. $W_{\text{field}} = q\Delta V$ (work by field)<br>
+                        2. $W_{\text{external}} = -q\Delta V$ (work against field)<br>
+                        3. $\Delta K = q\Delta V$ (kinetic energy change)<br>
+                        4. $U = qV$ (potential energy)</p>
+                    </div>
+
+                    <div class="competition-case">
+                        <div class="competition-case-title"><i class="fas fa-trophy"></i> Competition Case: Work in Non-Conservative Fields</div>
+                        <p><strong>Scenario:</strong> Charge moving in changing magnetic field. Induced electric field is non-conservative ($\nabla \times E \neq 0$). Work done depends on path. Example: Generator - mechanical work converts to electrical energy via changing flux. Here $W = \oint qE\cdot dl = -q\frac{d\Phi}{dt} \neq 0$ for closed path.</p>
+                    </div>
+
+                    <div class="imaginary-scenario">
+                        <div class="imaginary-title"><i class="fas fa-brain"></i> Imaginary Scenario: Perpetual Motion Machine</div>
+                        <p><strong>Imagine</strong> a charge moving in closed loop in pure electrostatic field. Work done over closed loop: $\oint F\cdot dl = q\oint E\cdot dl = 0$ (conservative). No net work, so perpetual motion impossible. But if we add time-varying magnetic field, net work possible (generator principle). This distinguishes conservative vs non-conservative fields.</p>
+                    </div>
+
+                    <h4>MDCAT/NUMS Critical Applications:</h4>
+                    <ul>
+                        <li><strong>Electron acceleration:</strong> $K = eV$ (electron volt concept)</li>
+                        <li><strong>Charging capacitor:</strong> Work done = energy stored = $\frac{1}{2}CV^2$</li>
+                        <li><strong>Assembling charges:</strong> $W = \frac{1}{2}\sum q_i V_i$</li>
+                        <li><strong>Moving on equipotential:</strong> $W = 0$</li>
+                    </ul>
+
+                    <div class="key-concept">
+                        <div class="key-concept-title">Exceptional Case: Work Done by Magnetic Force</div>
+                        <p>Magnetic force $F = q(v \times B)$ does zero work always ($F \perp v$). Magnetic fields change direction of charged particles but not speed (kinetic energy). This is why cyclotrons can accelerate particles without doing work - electric fields between dees do the work.</p>
+                    </div>
+
+                    <div class="direct-points">
+                        <div class="direct-points-title">Direct MCQ Points (Memorize):</div>
+                        <ol>
+                            <li>Work done = charge × potential difference</li>
+                            <li>Work done moving charge on equipotential = 0</li>
+                            <li>1 eV = 1.6×10⁻¹⁹ J</li>
+                            <li>Work done assembling system = stored potential energy</li>
+                            <li>Work-energy theorem: $W_{\text{net}} = \Delta K$</li>
+                        </ol>
+                    </div>
+
+                    <div class="equation">
+                        $\text{For point charges: } W = kq_1q_2\left(\frac{1}{r_f} - \frac{1}{r_i}\right)$
+                    </div>
+
+                    <h4>HEC/AKU Advanced Concepts:</h4>
+                    <ul>
+                        <li><strong>Virial theorem for charges:</strong> For stable system, $\langle U \rangle = -2\langle K \rangle$</li>
+                        <li><strong>Work in dielectric:</strong> Polarization work adds to field work</li>
+                        <li><strong>Electrochemical work:</strong> In batteries, chemical energy → electrical work</li>
+                        <li><strong>Work function:</strong> Minimum energy to remove electron from metal</li>
+                    </ul>
+
+                    <div class="competition-case">
+                        <div class="competition-case-title"><i class="fas fa-trophy"></i> Competition Trick: Minimum Work Configuration</div>
+                        <p>For N identical charges on a conducting sphere, they arrange to maximize separation (minimum potential energy). For 8 charges, they go to corners of cube. For many charges, they form triangular lattice on surface. Minimum work configuration corresponds to equilibrium (zero net force on each charge).</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Conceptual Q&A Section -->
+            <div class="panel fade-in">
+                <div class="panel-header">
+                    <h3 class="panel-title"><i class="fas fa-lightbulb"></i> Conceptual Understanding (5/30)</h3>
+                </div>
+                <div class="conceptual-qa">
+                    <div class="qa-question"><i class="fas fa-question-circle"></i> Does electric field always do work on moving charge?</div>
+                    <div class="qa-answer"><strong>Answer:</strong> No. If charge moves perpendicular to field ($\theta = 90^\circ$), $W = Fd\cos90^\circ = 0$. Example: Charge in uniform magnetic field (circular motion) - speed constant, kinetic energy unchanged. In capacitor, electron entering perpendicular to plates gets deflected but speed unchanged if no other forces.</div>
+                </div>
+                <div class="conceptual-qa">
+                    <div class="qa-question"><i class="fas fa-question-circle"></i> Why is work done path-independent in electrostatic field?</div>
+                    <div class="qa-answer"><strong>Answer:</strong> Electrostatic field is conservative: $\nabla \times E = 0$ or $\oint E\cdot dl = 0$. This means work done between two points depends only on endpoints, not path. Physically, electrostatic force is central and follows inverse square law, making it conservative like gravity.</div>
+                </div>
+                <div class="conceptual-qa">
+                    <div class="qa-question"><i class="fas fa-question-circle"></i> How much work to bring charge from infinity to charged conductor?</div>
+                    <div class="qa-answer"><strong>Answer:</strong> $W = qV$ where $V$ is conductor potential. For sphere: $V = kQ/R$, so $W = kqQ/R$. This equals potential energy of system. Work depends on existing charge $Q$ and test charge $q$. For $q$ same sign as $Q$, work positive (against repulsion).</div>
+                </div>
+                <div class="conceptual-qa">
+                    <div class="qa-question"><i class="fas fa-question-circle"></i> What is work done in charging capacitor?</div>
+                    <div class="qa-answer"><strong>Answer:</strong> Work done = energy stored = $\frac{1}{2}CV^2 = \frac{1}{2}QV = \frac{Q^2}{2C}$. Half the work goes to charging, half dissipates as heat if charging through resistor. For charging without resistance (ideal), all work stored. Battery does work $QV$, capacitor stores $QV/2$, rest dissipates.</div>
+                </div>
+                <div class="conceptual-qa">
+                    <div class="qa-question"><i class="fas fa-question-circle"></i> Can work be extracted from single heat bath using charges?</div>
+                    <div class="qa-answer"><strong>Answer:</strong> No, violates second law of thermodynamics. While charges can do work, extracting net work from thermal motion alone (Brownian motion of charges) requires temperature difference. Maxwell's demon thought experiment addresses this. Practical devices (thermocouples) need temperature gradient.</div>
+                </div>
+            </div>
+            
+            <!-- Progress Section -->
+            <div class="progress-section">
+                <div class="progress-header">
+                    <div class="progress-title">Work Done MCQs Progress</div>
+                    <div class="progress-stats"><span id="work-done-completed">0</span>/12 completed</div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="work-done-progress" style="width: 0%"></div>
+                </div>
+            </div>
+            
+            <!-- MCQs Section -->
+            <div class="panel fade-in">
+                <div class="panel-header">
+                    <h3 class="panel-title"><i class="fas fa-calculator"></i> Work Done MCQs (12)</h3>
+                    <div class="panel-actions">
+                        <button class="btn btn-primary" id="refresh-work-done">
+                            <i class="fas fa-sync-alt"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="grid grid-2" id="work-done-mcqs-container">
+                    <!-- MCQs will be populated here by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Field-Potential Gradient Tab -->
+        <div class="tab-content" id="gradient-tab">
+            <!-- Explanation Section -->
+            <div class="explanation-section fade-in">
+                <div class="explanation-header">
+                    <div class="explanation-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="explanation-title">Field-Potential Gradient: Mathematical Relationship</div>
+                </div>
+                
+                <div class="explanation-content">
+                    <h4>Core Mathematical Relationship</h4>
+                    <p>Electric field $\vec{E}$ is the negative gradient of electric potential $V$: $\vec{E} = -\nabla V = -\left(\frac{\partial V}{\partial x}\hat{i} + \frac{\partial V}{\partial y}\hat{j} + \frac{\partial V}{\partial z}\hat{k}\right)$. Field points in direction of steepest potential decrease.</p>
+                    
+                    <div class="key-concept">
+                        <div class="key-concept-title">1D Simplification: $E_x = -\frac{dV}{dx}$</div>
+                        <p>For potential varying only in x-direction: $E_x = -dV/dx$. Positive $E_x$ means potential decreases in +x direction. Units: V/m = N/C.</p>
+                    </div>
+
+                    <div class="competition-case">
+                        <div class="competition-case-title"><i class="fas fa-trophy"></i> Competition Case: Potential with Saddle Point</div>
+                        <p><strong>Scenario:</strong> $V(x,y) = x^2 - y^2$. Calculate $\vec{E} = -\nabla V = (-2x, 2y)$. At origin (0,0): $\vec{E} = (0,0)$ (critical point). But this is saddle point, not extremum. Field zero but potential not constant. This shows zero field doesn't guarantee potential extremum.</p>
+                    </div>
+
+                    <div class="imaginary-scenario">
+                        <div class="imaginary-title"><i class="fas fa-brain"></i> Imaginary Scenario: 4D Potential Gradient</div>
+                        <p><strong>Imagine</strong> potential in 4D spacetime: $V(x,y,z,t)$. Gradient becomes 4-gradient: $\partial_\mu V = (\frac{1}{c}\frac{\partial V}{\partial t}, -\nabla V)$. In relativity, electric field mixes with magnetic field under Lorentz transformations. Static observer sees pure E-field, moving observer sees both E and B fields.</p>
+                    </div>
+
+                    <h4>MDCAT/NUMS Critical Applications:</h4>
+                    <ul>
+                        <li><strong>From V-graph to E:</strong> Slope of V-x graph gives $-E_x$</li>
+                        <li><strong>From E to ΔV:</strong> Area under E-x graph gives $-\Delta V$</li>
+                        <li><strong>Equipotential surfaces:</strong> Perpendicular to field lines</li>
+                        <li><strong>Conductor surface:</strong> Field perpendicular, E = σ/ε₀</li>
+                    </ul>
+
+                    <div class="key-concept">
+                        <div class="key-concept-title">Exceptional Case: Discontinuous Potential Gradient</div>
+                        <p>At surface charge density σ, potential continuous but electric field discontinuous: $E_{\text{above}} - E_{\text{below}} = \sigma/\epsilon_0$ (normal component). Tangential component continuous. This jump allows solving boundary value problems without integration.</p>
+                    </div>
+
+                    <div class="direct-points">
+                        <div class="direct-points-title">Direct MCQ Points (Memorize):</div>
+                        <ol>
+                            <li>$E = -dV/dr$ (1D)</li>
+                            <li>Field lines ⊥ equipotential surfaces</li>
+                            <li>Strong field where equipotentials close together</li>
+                            <li>Zero field where potential constant (flat)</li>
+                            <li>Field direction = downhill potential direction</li>
+                        </ol>
+                    </div>
+
+                    <div class="equation">
+                        $\text{For radial symmetry: } E_r = -\frac{dV}{dr} \quad \text{Example: } V = \frac{kQ}{r} \Rightarrow E = \frac{kQ}{r^2}$
+                    </div>
+
+                    <h4>HEC/AKU Advanced Topics:</h4>
+                    <ul>
+                        <li><strong>Laplace's equation:</strong> $\nabla^2 V = 0$ in charge-free region</li>
+                        <li><strong>Poisson's equation:</strong> $\nabla^2 V = -\rho/\epsilon_0$ with charge</li>
+                        <li><strong>Method of images:</strong> Solve for V using imaginary charges</li>
+                        <li><strong>Conformal mapping:</strong> Transform complex V patterns</li>
+                    </ul>
+
+                    <div class="competition-case">
+                        <div class="competition-case-title"><i class="fas fa-trophy"></i> Competition Trick: Potential from Field Without Integration</div>
+                        <p>For symmetric fields, use $V = -\int E\cdot dr$ but choose path along symmetry. Example: Spherical symmetry, choose radial path: $V(r) = -\int_{\infty}^r E_r dr'$. For $E = kQ/r^2$, $V = kQ/r$. For infinite line charge $E = \lambda/(2\pi\epsilon_0 r)$, $V = -\frac{\lambda}{2\pi\epsilon_0}\ln(r/r_0)$.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Conceptual Q&A Section -->
+            <div class="panel fade-in">
+                <div class="panel-header">
+                    <h3 class="panel-title"><i class="fas fa-lightbulb"></i> Conceptual Understanding (5/30)</h3>
+                </div>
+                <div class="conceptual-qa">
+                    <div class="qa-question"><i class="fas fa-question-circle"></i> Why negative sign in $E = -\nabla V$?</div>
+                    <div class="qa-answer"><strong>Answer:</strong> Negative sign indicates field points from high to low potential (downhill). Positive charge accelerates downhill. Mathematically, if $V$ increases in +x direction ($dV/dx > 0$), then $E_x = -dV/dx < 0$, so field points in -x direction (toward lower V). Without minus, field would point uphill.</div>
+                </div>
+                <div class="conceptual-qa">
+                    <div class="qa-question"><i class="fas fa-question-circle"></i> Can you have field without potential?</div>
+                    <div class="qa-answer"><strong>Answer:</strong> In electrostatics, no. Electrostatic field always derivable from potential ($\nabla \times E = 0$). But in electromagnetism with changing B-field, induced electric field has $\nabla \times E \neq 0$, so not conservative, cannot be expressed as $-\nabla V$ alone. Need vector potential: $E = -\nabla V - \partial A/\partial t$.</div>
+                </div>
+                <div class="conceptual-qa">
+                    <div class="qa-question"><i class="fas fa-question-circle"></i> How does potential gradient indicate field strength?</div>
+                    <div class="qa-answer"><strong>Answer:</strong> Magnitude of potential gradient = field strength. Steep potential change (large $|dV/dr|$) means strong field. Equipotential surfaces close together → strong field. Near sharp conductor points, equipotentials crowd → strong field → corona discharge. In capacitor, uniform spacing → uniform field.</div>
+                </div>
+                <div class="conceptual-qa">
+                    <div class="qa-question"><i class="fas fa-question-circle"></i> What happens to field if potential graph has inflection point?</div>
+                    <div class="qa-answer"><strong>Answer:</strong> Inflection point in $V(x)$ means $d^2V/dx^2 = 0$. Field $E_x = -dV/dx$ has extremum (maximum or minimum) at inflection point. Example: Between two like charges, potential has maximum at midpoint, field zero. Potential curve has maximum (flat), field changes sign.</div>
+                </div>
+                <div class="conceptual-qa">
+                    <div class="qa-question"><i class="fas fa-question-circle"></i> How to find electric field from potential map?</div>
+                    <div class="qa-answer"><strong>Answer:</strong> 1) Draw perpendicular to equipotentials (field direction). 2) Density of equipotentials indicates strength (closer = stronger). 3) Magnitude: $E \approx \Delta V/\Delta d$ where $\Delta d$ is perpendicular distance between equipotentials with difference $\Delta V$. 4) Field lines never cross equipotentials except at 90°.</div>
+                </div>
+            </div>
+            
+            <!-- Progress Section -->
+            <div class="progress-section">
+                <div class="progress-header">
+                    <div class="progress-title">Field-Potential Gradient MCQs Progress</div>
+                    <div class="progress-stats"><span id="gradient-completed">0</span>/12 completed</div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="gradient-progress" style="width: 0%"></div>
+                </div>
+            </div>
+            
+            <!-- MCQs Section -->
+            <div class="panel fade-in">
+                <div class="panel-header">
+                    <h3 class="panel-title"><i class="fas fa-chart-line"></i> Field-Potential Gradient MCQs (12)</h3>
+                    <div class="panel-actions">
+                        <button class="btn btn-primary" id="refresh-gradient">
+                            <i class="fas fa-sync-alt"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="grid grid-2" id="gradient-mcqs-container">
+                    <!-- MCQs will be populated here by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Equipotential Surface Tab -->
+        <div class="tab-content" id="equipotential-tab">
+            <!-- Explanation Section -->
+            <div class="explanation-section fade-in">
+                <div class="explanation-header">
+                    <div class="explanation-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <div class="explanation-title">Equipotential Surfaces: Visualization & Applications</div>
+                </div>
+                
+                <div class="explanation-content">
+                    <h4>Fundamental Properties</h4>
+                    <p>Equipotential surfaces are 3D surfaces where electric potential is constant. Work done moving charge on such surface is zero. Field lines are always perpendicular to equipotential surfaces.</p>
+                    
+                    <div class="key-concept">
+                        <div class="key-concept-title">Key Characteristics:</div>
+                        <p>1. No work done moving charge on equipotential<br>
+                        2. Field lines ⊥ equipotential surfaces<br>
+                        3. Never intersect (unique V at each point)<br>
+                        4. Closer spacing = stronger electric field<br>
+                        5. Conductor surface is equipotential</p>
+                    </div>
+
+                    <div class="competition-case">
+                        <div class="competition-case-title"><i class="fas fa-trophy"></i> Competition Case: Toroidal Equipotentials</div>
+                        <p><strong>Scenario:</strong> Charged ring creates toroidal (doughnut-shaped) equipotentials near ring. On axis: simple $V = kQ/\sqrt{R^2 + x^2}$. Off-axis: complex shapes. Near ring, equipotentials wrap around. This shows 3D nature - not just spheres or planes. Important for designing electrodes in particle accelerators.</p>
+                    </div>
+
+                    <div class="imaginary-scenario">
+                        <div class="imaginary-title"><i class="fas fa-brain"></i> Imaginary Scenario: Fractal Equipotentials</div>
+                        <p><strong>Imagine</strong> charge distribution following fractal pattern (Koch snowflake). Equipotentials become infinitely complex with self-similarity at all scales. Electric field varies wildly over short distances. This challenges numerical computation methods. Real analog: Lightning follows fractal path to ground.</p>
+                    </div>
+
+                    <h4>MDCAT/NUMS Critical Applications:</h4>
+                    <ul>
+                        <li><strong>Conductor surfaces:</strong> Always equipotential in equilibrium</li>
+                        <li><strong>Capacitor plates:</strong> Parallel equipotential surfaces</li>
+                        <li><strong>Point charge:</strong> Concentric spherical equipotentials</li>
+                        <li><strong>Dipole:</strong> Complex shaped equipotentials</li>
+                        <li><strong>Uniform field:</strong> Parallel planar equipotentials</li>
+                    </ul>
+
+                    <div class="key-concept">
+                        <div class="key-concept-title">Exceptional Case: Crossed Equipotentials</div>
+                        <p>Normally impossible (unique potential at point). But at charge location (point charge), potential infinite, equipotentials collapse. At conductor edge (sharp point), equipotentials crowd. In plasma with space charge, equipotentials can appear to cross due to measurement averaging. True mathematical crossing violates Laplace's equation.</p>
+                    </div>
+
+                    <div class="direct-points">
+                        <div class="direct-points-title">Direct MCQ Points (Memorize):</div>
+                        <ol>
+                            <li>Work on equipotential = 0</li>
+                            <li>Field ⊥ equipotential</li>
+                            <li>Conductor surface = equipotential</li>
+                            <li>Close equipotentials = strong field</li>
+                            <li>Equipotentials never intersect</li>
+                        </ol>
+                    </div>
+
+                    <div class="equation">
+                        $\text{Spacing relation: } \Delta x = \frac{\Delta V}{E} \quad \text{(for uniform field)}$
+                    </div>
+
+                    <h4>HEC/AKU Advanced Topics:</h4>
+                    <ul>
+                        <li><strong>Electrocardiography (ECG):</strong> Measures body surface potentials</li>
+                        <li><strong>Electroencephalography (EEG):</strong> Brain potential mapping</li>
+                        <li><strong>Finite element analysis:</strong> Numerical equipotential calculation</li>
+                        <li><strong>Conformal mapping:</strong> Transform equipotential patterns</li>
+                        <li><strong>Seismic analogy:</strong> Wavefronts as equipotentials in time</li>
+                    </ul>
+
+                    <div class="competition-case">
+                        <div class="competition-case-title"><i class="fas fa-trophy"></i> Competition Trick: Minimum Surface Area</div>
+                        <p>For given charge and boundary conditions, conductor shape adjusts to minimize electrostatic energy. This corresponds to constant mean curvature surface (soap bubble analogy). For isolated conductor, sphere minimizes energy (minimum surface area for given volume). For constrained conductor, shape solves $\nabla^2 V = 0$ with boundary conditions.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Conceptual Q&A Section -->
+            <div class="panel fade-in">
+                <div class="panel-header">
+                    <h3 class="panel-title"><i class="fas fa-lightbulb"></i> Conceptual Understanding (5/30)</h3>
+                </div>
+                <div class="conceptual-qa">
+                    <div class="qa-question"><i class="fas fa-question-circle"></i> Why can't equipotential surfaces intersect?</div>
+                    <div class="qa-answer"><strong>Answer:</strong> Intersection would give same point two different potentials, impossible. Field would have two different directions (perpendicular to each surface). Mathematically, $V(x,y,z)$ is single-valued function. Physically, charge at point has unique potential. Exception: At point charge location (singularity), all equipotentials meet.</div>
+                </div>
+                <div class="conceptual-qa">
+                    <div class="qa-question"><i class="fas fa-question-circle"></i> How do equipotentials look for two identical positive charges?</div>
+                    <div class="qa-answer"><strong>Answer:</strong> Near each charge: concentric spheres (approximately). Midway: flattened equipotentials with "saddle" shape. Far away: approximately spherical (total charge 2Q). There's an equipotential surface enclosing both charges. Maximum potential at each charge location. Equipotentials are symmetric about perpendicular bisector.</div>
+                </div>
+                <div class="conceptual-qa">
+                    <div class="qa-question"><i class="fas fa-question-circle"></i> What is significance of closely spaced equipotentials?</div>
+                    <div class="qa-answer"><strong>Answer:</strong> Closely spaced equipotentials mean large potential gradient → strong electric field. Example: Near sharp conductor point, equipotentials crowd → strong field → corona discharge. In capacitor, uniform spacing → uniform field. In lightning cloud, close spacing near ground → dielectric breakdown.</div>
+                </div>
+                <div class="conceptual-qa">
+                    <div class="qa-question"><i class="fas fa-question-circle"></i> Why is conductor surface equipotential?</div>
+                    <div class="qa-answer"><strong>Answer:</strong> In electrostatic equilibrium, $E_{\text{tangential}} = 0$ on conductor surface (otherwise charges move). Since $E = -\nabla V$, zero tangential field means no potential variation along surface → surface equipotential. Charges redistribute until this condition met (time scale ~$10^{-19}$ s for metals).</div>
+                </div>
+                <div class="conceptual-qa">
+                    <div class="qa-question"><i class="fas fa-question-circle"></i> Can equipotential surface be closed?</div>
+                    <div class="qa-answer"><strong>Answer:</strong> Yes. Example: Equipotential enclosing point charge (sphere). For dipole, some equipotentials are closed curves enclosing both charges. In 3D, closed equipotential surfaces can encharge net charge (Gauss's law: $\oint E\cdot dA = Q_{\text{enc}}/\epsilon_0$). Closed equipotential implies charge inside.</div>
+                </div>
+            </div>
+            
+            <!-- Progress Section -->
+            <div class="progress-section">
+                <div class="progress-header">
+                    <div class="progress-title">Equipotential Surface MCQs Progress</div>
+                    <div class="progress-stats"><span id="equipotential-completed">0</span>/9 completed</div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="equipotential-progress" style="width: 0%"></div>
+                </div>
+            </div>
+            
+            <!-- MCQs Section -->
+            <div class="panel fade-in">
+                <div class="panel-header">
+                    <h3 class="panel-title"><i class="fas fa-layer-group"></i> Equipotential Surface MCQs (9)</h3>
+                    <div class="panel-actions">
+                        <button class="btn btn-primary" id="refresh-equipotential">
+                            <i class="fas fa-sync-alt"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="grid grid-2" id="equipotential-mcqs-container">
+                    <!-- MCQs will be populated here by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Electron Volt Tab -->
+        <div class="tab-content" id="electronvolt-tab">
+            <!-- Explanation Section -->
+            <div class="explanation-section fade-in">
+                <div class="explanation-header">
+                    <div class="explanation-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <div class="explanation-title">Electron Volt: Atomic Energy Unit</div>
+                </div>
+                
+                <div class="explanation-content">
+                    <h4>Fundamental Definition</h4>
+                    <p>Electron volt (eV) is the kinetic energy gained by an electron accelerating through 1 volt potential difference: $1 \text{ eV} = 1.602 \times 10^{-19} \text{ J}$. It's the natural energy unit for atomic-scale phenomena.</p>
+                    
+                    <div class="key-concept">
+                        <div class="key-concept-title">Energy-Veltage Relation: $K = q\Delta V$</div>
+                        <p>For charge $q$ through PD $\Delta V$: kinetic energy gain $K = q\Delta V$. For electron: $K (\text{eV}) = \Delta V (\text{volts})$. For proton: same energy in eV but different velocity (heavier).</p>
+                    </div>
+
+                    <div class="competition-case">
+                        <div class="competition-case-title"><i class="fas fa-trophy"></i> Competition Case: Relativistic Electrons</div>
+                        <p><strong>Scenario:</strong> Electron accelerated through 1 MeV ($10^6$ eV). Rest energy $m_ec^2 = 0.511$ MeV, so total energy $E = 1.511$ MeV. Relativistic factor $\gamma = E/(m_ec^2) = 2.96$. Velocity $v = c\sqrt{1-1/\gamma^2} = 0.94c$. Classical formula $v = \sqrt{2K/m}$ gives $v = 1.4c$ (impossible), showing need for relativity above ~100 keV.</p>
+                    </div>
+
+                    <div class="imaginary-scenario">
+                        <div class="imaginary-title"><i class="fas fa-brain"></i> Imaginary Scenario: eV in Different Dimensions</div>
+                        <p><strong>Imagine</strong> universe with 2 spatial dimensions. Coulomb force: $F \propto 1/r$ (not $1/r^2$). Potential: $V \propto \ln(r)$. Then electron volt definition changes: energy to bring electron from infinity to distance $r_0$ where $V=0$. eV becomes logarithmically related to distance. This shows eV definition depends on spatial dimensionality.</p>
+                    </div>
+
+                    <h4>MDCAT/NUMS Critical Applications:</h4>
+                    <ul>
+                        <li><strong>Atomic energies:</strong> Hydrogen ionization = 13.6 eV</li>
+                        <li><strong>Molecular bonds:</strong> Typical 1-10 eV</li>
+                        <li><strong>Photoelectric effect:</strong> $E_{\text{photon}} = hf$ in eV</li>
+                        <li><strong>X-rays:</strong> Characteristic lines in keV range</li>
+                        <li><strong>Nuclear energies:</strong> MeV range</li>
+                    </ul>
+
+                    <div class="key-concept">
+                        <div class="key-concept-title">Exceptional Case: Negative eV</div>
+                        <p>In atoms, electron bound states have negative energy (relative to free electron). Ground state hydrogen: -13.6 eV. This means 13.6 eV needed to ionize (remove electron). Negative eV indicates bound state. In semiconductor bands, valence electrons have negative eV relative to vacuum level.</p>
+                    </div>
+
+                    <div class="direct-points">
+                        <div class="direct-points-title">Direct MCQ Points (Memorize):</div>
+                        <ol>
+                            <li>1 eV = 1.6×10⁻¹⁹ J</li>
+                            <li>Electron through 1 V gains 1 eV</li>
+                            <li>Proton through 1 V gains 1 eV (same energy)</li>
+                            <li>Alpha particle (He²⁺) through 1 V gains 2 eV</li>
+                            <li>Rest energy electron = 0.511 MeV</li>
+                        </ol>
+                    </div>
+
+                    <div class="equation">
+                        $\text{Photon energy: } E(\text{eV}) = \frac{1240}{\lambda(\text{nm})} \quad \text{or} \quad \lambda(\text{nm}) = \frac{1240}{E(\text{eV})}$
+                    </div>
+
+                    <h4>HEC/AKU Advanced Topics:</h4>
+                    <ul>
+                        <li><strong>Mass-energy equivalence:</strong> $E = mc^2$ in eV</li>
+                        <li><strong>Pair production:</strong> Minimum photon energy = 1.022 MeV</li>
+                        <li><strong>Compton scattering:</strong> Energy transfer formula</li>
+                        <li><strong>Nuclear binding:</strong MeV per nucleon</li>
+                        <li><strong>Fermi energy:</strong> eV range in metals</li>
+                    </ul>
+
+                    <div class="competition-case">
+                        <div class="competition-case-title"><i class="fas fa-trophy"></i> Competition Trick: eV in Different Fields</div>
+                        <p>In gravitational field, "gravitational eV" would be energy gained by mass falling through 1 V of gravitational potential. But $V_{\text{grav}} = gh$, so need huge height for macroscopic mass. For electron: gravitational eV negligible (~$10^{-33}$ eV for 1 m fall). Shows weakness of gravity vs electromagnetism.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Conceptual Q&A Section -->
+            <div class="panel fade-in">
+                <div class="panel-header">
+                    <h3 class="panel-title"><i class="fas fa-lightbulb"></i> Conceptual Understanding (5/30)</h3>
+                </div>
+                <div class="conceptual-qa">
+                    <div class="qa-question"><i class="fas fa-question-circle"></i> Why use eV instead of joule for atomic physics?</div>
+                    <div class="qa-answer"><strong>Answer:</strong> Joule is huge relative to atomic energies. Hydrogen ionization energy = 2.18×10⁻¹⁸ J = 13.6 eV. eV gives manageable numbers (1-1000 range). Also, eV relates directly to accelerating voltage: electron through V volts gains V eV. Natural unit for particle accelerators, spectroscopy.</div>
+                </div>
+                <div class="conceptual-qa">
+                    <div class="qa-question"><i class="fas fa-question-circle"></i> Do electron and proton gain same KE through same PD?</div>
+                    <div class="qa-answer"><strong>Answer:</strong> Same kinetic energy in joules: $K = e\Delta V$. In eV, numerically equal to $\Delta V$ for both. But velocities differ: $v = \sqrt{2K/m}$, so electron velocity ≈ 42.6× proton velocity (since $m_p ≈ 1836 m_e$). Momentum also differs: $p = \sqrt{2mK}$, proton has √1836 ≈ 42.9× more momentum.</div>
+                </div>
+                <div class="conceptual-qa">
+                    <div class="qa-question"><i class="fas fa-question-circle"></i> What is temperature equivalent of 1 eV?</div>
+                    <div class="qa-answer"><strong>Answer:</strong> From $E = k_B T$, where $k_B = 8.617×10^{-5}$ eV/K. So $T = E/k_B = 1 \text{ eV} / (8.617×10^{-5} \text{ eV/K}) ≈ 11,604$ K. Room temperature (300 K) ≈ 0.0259 eV. Plasma physics often uses eV for temperature: 1 eV plasma means average particle energy 1 eV.</div>
+                </div>
+                <div class="conceptual-qa">
+                    <div class="qa-question"><i class="fas fa-question-circle"></i> How to convert between eV and wavelength?</div>
+                    <div class="qa-answer"><strong>Answer:</strong> For photon: $E = hc/\lambda$. With $hc = 1240$ eV·nm, $\lambda(\text{nm}) = 1240/E(\text{eV})$. Example: 2 eV photon → 620 nm (red). 10 eV → 124 nm (UV). X-rays: 10 keV → 0.124 nm. Gamma rays: 1 MeV → 0.00124 nm. Useful in photoelectric effect problems.</div>
+                </div>
+                <div class="conceptual-qa">
+                    <div class="qa-question"><i class="fas fa-question-circle"></i> What is significance of MeV/c² units?</div>
+                    <div class="qa-answer"><strong>Answer:</strong> In particle physics, masses often given in MeV/c² or GeV/c². From $E = mc^2$, mass $m = E/c^2$. Electron mass = 0.511 MeV/c². Proton = 938 MeV/c². Convenient because $c=1$ in natural units. Collisions: Total energy in MeV, masses in MeV/c², momenta in MeV/c.</div>
+                </div>
+            </div>
+            
+            <!-- Progress Section -->
+            <div class="progress-section">
+                <div class="progress-header">
+                    <div class="progress-title">Electron Volt MCQs Progress</div>
+                    <div class="progress-stats"><span id="electronvolt-completed">0</span>/8 completed</div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="electronvolt-progress" style="width: 0%"></div>
+                </div>
+            </div>
+            
+            <!-- MCQs Section -->
+            <div class="panel fade-in">
+                <div class="panel-header">
+                    <h3 class="panel-title"><i class="fas fa-atom"></i> Electron Volt MCQs (8)</h3>
+                    <div class="panel-actions">
+                        <button class="btn btn-primary" id="refresh-electronvolt">
+                            <i class="fas fa-sync-alt"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="grid grid-2" id="electronvolt-mcqs-container">
+                    <!-- MCQs will be populated here by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Capacitor Tab -->
+        <div class="tab-content" id="capacitor-tab">
+            <!-- Explanation Section -->
+            <div class="explanation-section fade-in">
+                <div class="explanation-header">
+                    <div class="explanation-icon">
+                        <i class="fas fa-battery-three-quarters"></i>
+                    </div>
+                    <div class="explanation-title">Capacitor: Charging & Discharging Dynamics</div>
+                </div>
+                
+                <div class="explanation-content">
+                    <h4>Fundamental Capacitance Concept</h4>
+                    <p>Capacitance $C = Q/V$ measures charge stored per volt. Parallel plate capacitor: $C = \frac{\epsilon_0 A}{d}$. With dielectric: $C = \frac{\epsilon_0 \epsilon_r A}{d}$.</p>
+                    
+                    <div class="key-concept">
+                        <div class="key-concept-title">Charging Equations (RC Circuit):</div>
+                        <p>Charging: $Q(t) = Q_0(1 - e^{-t/RC})$, $V(t) = V_0(1 - e^{-t/RC})$, $I(t) = I_0 e^{-t/RC}$<br>
+                        Discharging: $Q(t) = Q_0 e^{-t/RC}$, $V(t) = V_0 e^{-t/RC}$, $I(t) = -I_0 e^{-t/RC}$<br>
+                        Time constant: $\tau = RC$</p>
+                    </div>
+
+                    <div class="competition-case">
+                        <div class="competition-case-title"><i class="fas fa-trophy"></i> Competition Case: Nonlinear Dielectric</div>
+                        <p><strong>Scenario:</strong> Ferroelectric dielectric with $C$ depending on $V$. Capacitance not constant: $C(V) = C_0(1 + \alpha V + \beta V^2)$. Charge-voltage relation nonlinear: $Q = \int C(V)dV$. Energy stored: $U = \int V dQ$. Hysteresis loop: $Q$ depends on history of $V$. Important for memory devices.</p>
+                    </div>
+
+                    <div class="imaginary-scenario">
+                        <div class="imaginary-title"><i class="fas fa-brain"></i> Imaginary Scenario: Quantum Capacitor</div>
+                        <p><strong>Imagine</strong> nanoscale capacitor with plates separated by 1 nm. Quantum tunneling allows electron wavefunctions to penetrate barrier. "Effective capacitance" includes quantum correction: $C_{\text{quantum}} = C_{\text{classical}} + C_{\text{quantum}}$. At very small distances, discrete charge effects important (single-electron transistors).</p>
+                    </div>
+
+                    <h4>MDCAT/NUMS Critical Applications:</h4>
+                    <ul>
+                        <li><strong>Energy storage:</strong> $U = \frac{1}{2}CV^2 = \frac{1}{2}QV = \frac{Q^2}{2C}$</li>
+                        <li><strong>Series capacitors:</strong> $\frac{1}{C_{eq}} = \sum \frac{1}{C_i}$</li>
+                        <li><strong>Parallel capacitors:</strong> $C_{eq} = \sum C_i$</li>
+                        <li><strong>Time constant:</strong> $\tau = RC$ (63% charging in 1τ)</li>
+                        <li><strong>Dielectric effect:</strong> $C$ increases by $\epsilon_r$</li>
+                    </ul>
+
+                    <div class="key-concept">
+                        <div class="key-concept-title">Exceptional Case: Capacitor with Moving Plates</div>
+                        <p>If capacitor plates move apart while connected to battery (constant $V$): $C$ decreases, $Q$ decreases (charge returns to battery), $E = V/d$ decreases, energy $U = \frac{1}{2}CV^2$ decreases. If disconnected (constant $Q$): $C$ decreases, $V = Q/C$ increases, $E = V/d$ may increase or decrease depending on spacing, energy $U = Q^2/2C$ increases (work done separating plates).</p>
+                    </div>
+
+                    <div class="direct-points">
+                        <div class="direct-points-title">Direct MCQ Points (Memorize):</div>
+                        <ol>
+                            <li>$C = Q/V$, 1 Farad = 1 C/V</li>
+                            <li>Parallel plate: $C \propto A/d$</li>
+                            <li>With dielectric: $C$ increases by $\epsilon_r$</li>
+                            <li>Energy: $U = \frac{1}{2}CV^2$</li>
+                            <li>Time constant: $\tau = RC$</li>
+                        </ol>
+                    </div>
+
+                    <div class="equation">
+                        $\text{Energy density: } u = \frac{1}{2}\epsilon_0 E^2 = \frac{1}{2}\epsilon_0\epsilon_r E^2 \quad \text{(J/m³)}$
+                    </div>
+
+                    <h4>HEC/AKU Advanced Topics:</h4>
+                    <ul>
+                        <li><strong>Capacitor networks:</strong> Delta-wye transformations</li>
+                        <li><strong>Distributed capacitance:</strong> Transmission lines</li>
+                        <li><strong>Stray capacitance:</strong> Unintended capacitance in circuits</li>
+                        <li><strong>Supercapacitors:</strong> Electric double-layer, pseudo-capacitance</li>
+                        <li><strong>Variable capacitors:</strong> Tuning in radios</li>
+                    </ul>
+
+                    <div class="competition-case">
+                        <div class="competition-case-title"><i class="fas fa-trophy"></i> Competition Trick: Infinite Ladder Network</div>
+                        <p>Infinite network of identical capacitors $C$. Input capacitance $C_{\text{in}}$ satisfies: $C_{\text{in}} = C + \frac{C C_{\text{in}}}{C + C_{\text{in}}}$. Solve: $C_{\text{in}}^2 - C C_{\text{in}} - C^2 = 0$. $C_{\text{in}} = C\frac{1+\sqrt{5}}{2} = C\phi$ where $\phi$ = golden ratio ≈ 1.618. Similar solution for resistors.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Conceptual Q&A Section -->
+            <div class="panel fade-in">
+                <div class="panel-header">
+                    <h3 class="panel-title"><i class="fas fa-lightbulb"></i> Conceptual Understanding (5/30)</h3>
+                </div>
+                <div class="conceptual-qa">
+                    <div class="qa-question"><i class="fas fa-question-circle"></i> Why does capacitor block DC but pass AC?</div>
+                    <div class="qa-answer"><strong>Answer:</strong> DC: capacitor charges to battery voltage, then current stops (open circuit). AC: capacitor continually charges/discharges as voltage changes, allowing current flow. Impedance $X_C = 1/(2\pi f C)$: small at high frequencies, large at low frequencies. At DC ($f=0$), $X_C \to \infty$ (blocks). At high $f$, $X_C \to 0$ (passes).</div>
+                </div>
+                <div class="conceptual-qa">
+                    <div class="qa-question"><i class="fas fa-question-circle"></i> What happens when dielectric inserted into capacitor?</div>
+                    <div class="qa-answer"><strong>Answer:</strong> Case 1 (battery connected, constant $V$): $C$ increases by $\epsilon_r$, $Q$ increases by $\epsilon_r$, $E$ decreases by $1/\epsilon_r$, energy increases by $\epsilon_r$. Case 2 (battery disconnected, constant $Q$): $C$ increases by $\epsilon_r$, $V$ decreases by $1/\epsilon_r$, $E$ decreases by $1/\epsilon_r$, energy decreases by $1/\epsilon_r$.</div>
+                </div>
+                <div class="conceptual-qa">
+                    <div class="qa-question"><i class="fas fa-question-circle"></i> Why is energy stored $\frac{1}{2}CV^2$ not $CV^2$?</div>
+                    <div class="qa-answer"><strong>Answer:</strong> During charging, first charges easy to add (low $V$), later charges harder (higher $V$). Average voltage during charging = $V/2$. Work = charge × average voltage = $Q \times (V/2) = \frac{1}{2}QV = \frac{1}{2}CV^2$. Other half of battery energy dissipates as heat in resistance. Without resistance (ideal), all battery energy $QV$ would transfer.</div>
+                </div>
+                <div class="conceptual-qa">
+                    <div class="qa-question"><i class="fas fa-question-circle"></i> What determines capacitor time constant?</div>
+                    <div class="qa-answer"><strong>Answer:</strong> $\tau = RC$. Larger $R$ → slower charging (smaller current). Larger $C$ → more charge needed for given voltage → slower. After 1$\tau$: 63% charged. After 3$\tau$: 95% charged. After 5$\tau$: 99.3% charged. $\tau$ independent of battery voltage. RC circuits used as timers, filters.</div>
+                </div>
+                <div class="conceptual-qa">
+                    <div class="qa-question"><i class="fas fa-question-circle"></i> Can capacitor voltage change instantaneously?</div>
+                    <div class="qa-answer"><strong>Answer:</strong> No. $V = Q/C$, and $Q$ changes continuously via current $I = dQ/dt$. Instant voltage change would require infinite current ($I = C dV/dt$). In circuits, capacitor voltage changes exponentially, not abruptly. Exception: Ideal circuit with no resistance (theoretical) could have instantaneous change, but physically impossible due to wire resistance.</div>
+                </div>
+            </div>
+            
+            <!-- Progress Section -->
+            <div class="progress-section">
+                <div class="progress-header">
+                    <div class="progress-title">Capacitor MCQs Progress</div>
+                    <div class="progress-stats"><span id="capacitor-completed">0</span>/12 completed</div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="capacitor-progress" style="width: 0%"></div>
+                </div>
+            </div>
+            
+            <!-- MCQs Section -->
+            <div class="panel fade-in">
+                <div class="panel-header">
+                    <h3 class="panel-title"><i class="fas fa-battery-three-quarters"></i> Capacitor MCQs (12)</h3>
+                    <div class="panel-actions">
+                        <button class="btn btn-primary" id="refresh-capacitor">
+                            <i class="fas fa-sync-alt"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="grid grid-2" id="capacitor-mcqs-container">
+                    <!-- MCQs will be populated here by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress Tracking Tab -->
+        <div class="tab-content" id="progress-tab">
+            <div class="panel fade-in">
+                <div class="panel-header">
+                    <h3 class="panel-title"><i class="fas fa-chart-line"></i> Progress Tracking</h3>
+                </div>
+                
+                <div class="explanation-section">
+                    <div class="explanation-header">
+                        <div class="explanation-icon">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <div class="explanation-title">Your Learning Progress</div>
+                    </div>
+                    
+                    <div class="explanation-content">
+                        <p>Track your progress through 80 MCQs and 30 Conceptual Q&A. Detailed breakdown:</p>
+                        
+                        <div class="progress-section" style="margin-top: 12.15px;">
+                            <div class="progress-header">
+                                <div class="progress-title">Overall Progress</div>
+                                <div class="progress-stats"><span id="overall-completed">0</span>/80 completed</div>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="overall-progress" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 12.15px;">
+                            <div style="margin-bottom: 9.72px;">
+                                <div class="progress-header">
+                                    <div class="progress-title">Electric Potential (15)</div>
+                                    <div class="progress-stats"><span id="potential-summary">0</span>/15</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="potential-summary-progress" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            
+                            <div style="margin-bottom: 9.72px;">
+                                <div class="progress-header">
+                                    <div class="progress-title">Potential Difference (12)</div>
+                                    <div class="progress-stats"><span id="potential-difference-summary">0</span>/12</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="potential-difference-summary-progress" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            
+                            <div style="margin-bottom: 9.72px;">
+                                <div class="progress-header">
+                                    <div class="progress-title">Work Done (12)</div>
+                                    <div class="progress-stats"><span id="work-done-summary">0</span>/12</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="work-done-summary-progress" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            
+                            <div style="margin-bottom: 9.72px;">
+                                <div class="progress-header">
+                                    <div class="progress-title">Field-Potential Gradient (12)</div>
+                                    <div class="progress-stats"><span id="gradient-summary">0</span>/12</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="gradient-summary-progress" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            
+                            <div style="margin-bottom: 9.72px;">
+                                <div class="progress-header">
+                                    <div class="progress-title">Equipotential Surface (9)</div>
+                                    <div class="progress-stats"><span id="equipotential-summary">0</span>/9</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="equipotential-summary-progress" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            
+                            <div style="margin-bottom: 9.72px;">
+                                <div class="progress-header">
+                                    <div class="progress-title">Electron Volt (8)</div>
+                                    <div class="progress-stats"><span id="electronvolt-summary">0</span>/8</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="electronvolt-summary-progress" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            
+                            <div style="margin-bottom: 9.72px;">
+                                <div class="progress-header">
+                                    <div class="progress-title">Capacitor (12)</div>
+                                    <div class="progress-stats"><span id="capacitor-summary">0</span>/12</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="capacitor-summary-progress" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 12.15px; text-align: center;">
+                            <button class="btn btn-primary" id="reset-progress">
+                                <i class="fas fa-redo"></i> Reset Progress
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 Electric Potential & Capacitance Portal. MDCAT | NUMS | HEC | AKU | Competition Exam Preparation.</p>
+                <p>Complete coverage with 80 MCQs, 30 Conceptual Q&A, and detailed explanations</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Complete MCQ Data - 80 MCQs total
+        const electrostaticsMCQs = {
+            potential: [
+                {
+                    id: 1,
+                    question: "If $V = kQ/r$ for point charge and distance $r$ triples while charge $Q$ doubles, new potential becomes:",
+                    options: ["$2V/3$", "$3V/2$", "$V/6$", "$6V$"],
+                    correctAnswer: 0,
+                    explanation: "$V' = k(2Q)/(3r) = (2/3)(kQ/r) = 2V/3$"
+                },
+                {
+                    id: 2,
+                    question: "Potential due to point charge is $V$ at distance $r$. At distance $2r$, potential becomes:",
+                    options: ["$V/2$", "$V/4$", "$2V$", "$4V$"],
+                    correctAnswer: 0,
+                    explanation: "$V \\propto 1/r$, so doubling distance halves potential: $V' = V/2$"
+                },
+                {
+                    id: 3,
+                    question: "If $V \\propto 1/r$ and $r$ increases by 25%, new potential is what fraction of original?",
+                    options: ["0.8", "0.75", "1.25", "1.33"],
+                    correctAnswer: 0,
+                    explanation: "$r' = 1.25r$, $V' = 1/1.25 = 0.8$ of original"
+                },
+                {
+                    id: 4,
+                    question: "Three charges +q, +q, -q at vertices of equilateral triangle side $a$. Potential at centroid is:",
+                    options: ["$kq/a$", "$2kq/a$", "$3kq/a$", "$0$"],
+                    correctAnswer: 0,
+                    explanation: "Distance from centroid to vertex = $a/\\sqrt{3}$. $V = kq/r + kq/r - kq/r = kq/r = \\sqrt{3}kq/a$"
+                },
+                {
+                    id: 5,
+                    question: "Potential inside uniformly charged solid non-conducting sphere radius $R$, charge $Q$:",
+                    options: ["$\\frac{kQ}{2R}(3 - \\frac{r^2}{R^2})$", "$\\frac{kQ}{r}$", "$\\frac{kQr}{R^2}$", "0"],
+                    correctAnswer: 0,
+                    explanation: "Inside sphere: $V = \\frac{kQ}{2R}(3 - r^2/R^2)$, parabolic decrease from center"
+                },
+                {
+                    id: 6,
+                    question: "If potential $V$ doubles and charge $q$ triples, work done $W = qV$ becomes:",
+                    options: ["6 times", "3 times", "2 times", "5 times"],
+                    correctAnswer: 0,
+                    explanation: "$W' = (3q)(2V) = 6qV = 6W$"
+                },
+                {
+                    id: 7,
+                    question: "Zero potential point between charges +4q and +q separated by distance $d$ is:",
+                    options: ["$d/5$ from +q", "$d/2$ from +q", "$2d/5$ from +q", "$4d/5$ from +q"],
+                    correctAnswer: 0,
+                    explanation: "$\\frac{4q}{x} = \\frac{q}{d-x} \\Rightarrow 4(d-x) = x \\Rightarrow x = 4d/5$ from +4q, so $d/5$ from +q"
+                },
+                {
+                    id: 8,
+                    question: "Potential due to dipole moment $p$ on axial line at distance $r \\gg d$ is:",
+                    options: ["$\\frac{2kp}{r^2}$", "$\\frac{kp}{r^2}$", "$\\frac{kp}{r}$", "$\\frac{2kp}{r^3}$"],
+                    correctAnswer: 0,
+                    explanation: "Axial potential: $V = \\frac{1}{4\\pi\\epsilon_0}\\frac{2p}{r^2}$ for $r \\gg d$"
+                },
+                {
+                    id: 9,
+                    question: "If $V = ar^2$ for $r < R$, electric field at $r$ is:",
+                    options: ["$-2ar$", "$2ar$", "$-ar^2$", "$ar^2/2$"],
+                    correctAnswer: 0,
+                    explanation: "$E = -dV/dr = -d(ar^2)/dr = -2ar$"
+                },
+                {
+                    id: 10,
+                    question: "Unit of potential gradient is same as:",
+                    options: ["Electric field", "Potential", "Force", "Charge"],
+                    correctAnswer: 0,
+                    explanation: "$dV/dr$ has units V/m = N/C = electric field units"
+                },
+                {
+                    id: 11,
+                    question: "Potential energy of system of three charges $q$ at vertices of equilateral triangle side $a$ is:",
+                    options: ["$3kq^2/a$", "$kq^2/a$", "$6kq^2/a$", "$kq^2/2a$"],
+                    correctAnswer: 0,
+                    explanation: "$U = 3 \\times \\frac{kq^2}{a} = 3kq^2/a$ (three pairs, each distance $a$)"
+                },
+                {
+                    id: 12,
+                    question: "If all distances in a system double, potential due to point charges becomes:",
+                    options: ["Half", "Quarter", "Same", "Double"],
+                    correctAnswer: 0,
+                    explanation: "$V \\propto 1/r$, so doubling all distances halves all potentials"
+                },
+                {
+                    id: 13,
+                    question: "Conducting sphere radius $R$ charged to potential $V$. Charge on sphere is:",
+                    options: ["$RV/k$", "$V/kR$", "$kRV$", "$V/Rk$"],
+                    correctAnswer: 0,
+                    explanation: "$V = kQ/R \\Rightarrow Q = RV/k$"
+                },
+                {
+                    id: 14,
+                    question: "Work done bringing charge $q$ from infinity to point at potential $V$ is:",
+                    options: ["$qV$", "$V/q$", "$q/V$", "0"],
+                    correctAnswer: 0,
+                    explanation: "By definition: $W = qV$"
+                },
+                {
+                    id: 15,
+                    question: "Potential at center of uniformly charged ring radius $R$, charge $Q$ is:",
+                    options: ["$kQ/R$", "0", "$kQ/R^2$", "$kQ/2R$"],
+                    correctAnswer: 0,
+                    explanation: "All charge elements at distance $R$ from center: $V = kQ/R$"
+                }
+            ],
+            "potential-difference": [
+                {
+                    id: 1,
+                    question: "If $\Delta V = Ed$ for uniform field and $E$ doubles while $d$ halves, $\Delta V$:",
+                    options: ["Unchanged", "Doubles", "Halves", "Quadruples"],
+                    correctAnswer: 0,
+                    explanation: "$\Delta V' = (2E)(d/2) = Ed = \Delta V$"
+                },
+                {
+                    id: 2,
+                    question: "PD between parallel plates with charge density $\sigma$, separation $d$:",
+                    options: ["$\sigma d/\epsilon_0$", "$\sigma/2\epsilon_0 d$", "$\sigma/\epsilon_0 d$", "$\sigma d/2\epsilon_0$"],
+                    correctAnswer: 0,
+                    explanation: "$E = \sigma/\epsilon_0$, so $\Delta V = Ed = \sigma d/\epsilon_0$"
+                },
+                {
+                    id: 3,
+                    question: "If battery maintains 12V PD and plate separation doubles, electric field:",
+                    options: ["Halves", "Doubles", "Same", "Quadruples"],
+                    correctAnswer: 0,
+                    explanation: "$E = \Delta V/d$, constant $\Delta V$, double $d$: $E$ halves"
+                },
+                {
+                    id: 4,
+                    question: "Work done moving charge $q$ through PD $\Delta V$ is $W$. If $q$ triples and $\Delta V$ halves, new work:",
+                    options: ["1.5W", "3W", "0.5W", "6W"],
+                    correctAnswer: 0,
+                    explanation: "$W' = (3q)(\Delta V/2) = 1.5q\Delta V = 1.5W$"
+                },
+                {
+                    id: 5,
+                    question: "PD between points at 10V and -5V is:",
+                    options: ["15V", "5V", "-15V", "-5V"],
+                    correctAnswer: 0,
+                    explanation: "$\Delta V = V_2 - V_1 = -5 - 10 = -15V$ (magnitude 15V)"
+                },
+                {
+                    id: 6,
+                    question: "Electron accelerated through 100V gains energy:",
+                    options: ["100eV", "1eV", "1000eV", "0.01eV"],
+                    correctAnswer: 0,
+                    explanation: "$K = e\Delta V = 100eV$"
+                },
+                {
+                    id: 7,
+                    question: "If $\Delta V = IR$ and $I$ doubles while $R$ constant, $\Delta V$:",
+                    options: ["Doubles", "Halves", "Same", "Quadruples"],
+                    correctAnswer: 0,
+                    explanation: "Ohm's law: $\Delta V \propto I$, so doubles"
+                },
+                {
+                    id: 8,
+                    question: "PD across open circuit equals:",
+                    options: ["EMF", "Zero", "IR", "$1/2$ EMF"],
+                    correctAnswer: 0,
+                    explanation: "No current, so terminal PD = emf"
+                },
+                {
+                    id: 9,
+                    question: "In capacitor $C = Q/V$, if $Q$ doubles and $V$ constant, $C$:",
+                    options: ["Doubles", "Halves", "Same", "Quadruples"],
+                    correctAnswer: 0,
+                    explanation: "$C = Q/V$, if $Q$ doubles, $C$ doubles (for constant $V$)"
+                },
+                {
+                    id: 10,
+                    question: "Time constant $\tau = RC$. If $R$ doubles and $C$ halves, $\tau$:",
+                    options: ["Unchanged", "Doubles", "Halves", "Quadruples"],
+                    correctAnswer: 0,
+                    explanation: "$\tau' = (2R)(C/2) = RC = \tau$"
+                },
+                {
+                    id: 11,
+                    question: "With dielectric constant $\epsilon_r$, capacitance becomes:",
+                    options: ["$\epsilon_r C_0$", "$C_0/\epsilon_r$", "$\sqrt{\epsilon_r} C_0$", "$C_0$"],
+                    correctAnswer: 0,
+                    explanation: "$C = \epsilon_r C_0$"
+                },
+                {
+                    id: 12,
+                    question: "Energy stored $U = \\frac{1}{2}CV^2$. If $V$ doubles, $U$:",
+                    options: ["Quadruples", "Doubles", "Halves", "Same"],
+                    correctAnswer: 0,
+                    explanation: "$U \\propto V^2$, so $(2V)^2 = 4V^2$, $U$ quadruples"
+                }
+            ],
+            "work-done": [
+                {
+                    id: 1,
+                    question: "Work done $W = q\Delta V$. If $q$ halves and $\Delta V$ doubles, $W$:",
+                    options: ["Unchanged", "Doubles", "Halves", "Quadruples"],
+                    correctAnswer: 0,
+                    explanation: "$W' = (q/2)(2\Delta V) = q\Delta V = W$"
+                },
+                {
+                    id: 2,
+                    question: "Work done moving $+q$ from lower to higher potential is:",
+                    options: ["Positive", "Negative", "Zero", "Infinite"],
+                    correctAnswer: 0,
+                    explanation: "$W = q(V_{\text{high}} - V_{\text{low}}) > 0$ for $q>0$"
+                },
+                {
+                    id: 3,
+                    question: "If electron ($-e$) moves through $\Delta V = +10V$, work done by field:",
+                    options: ["$-10eV$", "$+10eV$", "$-5eV$", "$+5eV$"],
+                    correctAnswer: 0,
+                    explanation: "$W = q\Delta V = (-e)(10V) = -10eV$"
+                },
+                {
+                    id: 4,
+                    question: "Work done assembling three charges $q$ at vertices of equilateral triangle side $a$:",
+                    options: ["$3kq^2/a$", "$kq^2/a$", "$6kq^2/a$", "$kq^2/2a$"],
+                    correctAnswer: 0,
+                    explanation: "$U = 3 \\times \\frac{kq^2}{a} = 3kq^2/a$ (three pairs)"
+                },
+                {
+                    id: 5,
+                    question: "Kinetic energy gained by proton through 1000V:",
+                    options: ["1000eV", "1eV", "500eV", "2000eV"],
+                    correctAnswer: 0,
+                    explanation: "$K = e\Delta V = 1000eV$"
+                },
+                {
+                    id: 6,
+                    question: "If $W = q\Delta V$ and $\Delta V$ triples while $q$ constant, $W$:",
+                    options: ["Triples", "Same", "$1/3$", "9 times"],
+                    correctAnswer: 0,
+                    explanation: "$W' = q(3\Delta V) = 3(q\Delta V) = 3W$"
+                },
+                {
+                    id: 7,
+                    question: "Work done moving charge on equipotential surface:",
+                    options: ["Zero", "$qV$", "$qE$", "Infinite"],
+                    correctAnswer: 0,
+                    explanation: "$W = q\Delta V = 0$ on equipotential"
+                },
+                {
+                    id: 8,
+                    question: "Work-energy theorem: $W = \Delta KE$. If electron starts from rest through $V$, final $v$:",
+                    options: ["$\sqrt{2eV/m}$", "$eV/m$", "$eV^2/2m$", "$\sqrt{eV/m}$"],
+                    correctAnswer: 0,
+                    explanation: "$eV = \frac{1}{2}mv^2 \Rightarrow v = \sqrt{2eV/m}$"
+                },
+                {
+                    id: 9,
+                    question: "Work done against electric field equals increase in:",
+                    options: ["Potential energy", "Kinetic energy", "Total energy", "Momentum"],
+                    correctAnswer: 0,
+                    explanation: "Work against field = $\Delta U$ = increase in potential energy"
+                },
+                {
+                    id: 10,
+                    question: "If $1eV = 1.6\times10^{-19}J$, 5eV in joules:",
+                    options: ["$8.0\times10^{-19}J$", "$3.2\times10^{-19}J$", "$1.6\times10^{-19}J$", "$0.8\times10^{-19}J$"],
+                    correctAnswer: 0,
+                    explanation: "$5eV = 5 \times 1.6\times10^{-19} = 8.0\times10^{-19}J$"
+                },
+                {
+                    id: 11,
+                    question: "Work to charge capacitor to voltage $V$:",
+                    options: ["$\frac{1}{2}CV^2$", "$CV^2$", "$\frac{1}{2}CV$", "$CV$"],
+                    correctAnswer: 0,
+                    explanation: "Energy stored = work done = $\frac{1}{2}CV^2$"
+                },
+                {
+                    id: 12,
+                    question: "Alpha particle (charge $2e$) through 50V gains energy:",
+                    options: ["100eV", "50eV", "25eV", "200eV"],
+                    correctAnswer: 0,
+                    explanation: "$K = (2e)(50V) = 100eV$"
+                }
+            ],
+            gradient: [
+                {
+                    id: 1,
+                    question: "If $E = -dV/dr$ and $V = V_0(1 - r/R)$ for $r<R$, then $E$:",
+                    options: ["$V_0/R$ constant", "$-V_0/R$", "$V_0r/R^2$", "$-V_0r/R^2$"],
+                    correctAnswer: 0,
+                    explanation: "$E = -dV/dr = -d[V_0(1 - r/R)]/dr = -V_0(-1/R) = V_0/R$"
+                },
+                {
+                    id: 2,
+                    question: "Where potential is maximum, electric field is:",
+                    options: ["Zero", "Maximum", "Minimum", "Negative"],
+                    correctAnswer: 0,
+                    explanation: "At maximum, $dV/dr = 0$, so $E = 0$"
+                },
+                {
+                    id: 3,
+                    question: "If $V = k/r$, then $E =$",
+                    options: ["$k/r^2$", "$-k/r^2$", "$k/r$", "$-k/r$"],
+                    correctAnswer: 0,
+                    explanation: "$E = -dV/dr = -d(k/r)/dr = -(-k/r^2) = k/r^2$"
+                },
+                {
+                    id: 4,
+                    question: "Potential gradient has units:",
+                    options: ["V/m", "N/C", "Both", "J/C"],
+                    correctAnswer: 0,
+                    explanation: "$dV/dr$ units: V/m = N/C = electric field"
+                },
+                {
+                    id: 5,
+                    question: "If $V(x) = ax^2 + bx + c$, electric field $E_x$:",
+                    options: ["$-(2ax + b)$", "$2ax + b$", "$-2ax$", "$2ax$"],
+                    correctAnswer: 0,
+                    explanation: "$E_x = -dV/dx = -(2ax + b)$"
+                },
+                {
+                    id: 6,
+                    question: "For uniform field $E$, potential $V(x)$:",
+                    options: ["$-Ex + C$", "$Ex + C$", "$E/x + C$", "$-E/x + C$"],
+                    correctAnswer: 0,
+                    explanation: "$E = -dV/dx \Rightarrow dV = -Edx \Rightarrow V = -Ex + C$"
+                },
+                {
+                    id: 7,
+                    question: "If equipotentials closely spaced, electric field:",
+                    options: ["Strong", "Weak", "Zero", "Uniform"],
+                    correctAnswer: 0,
+                    explanation: "$E = |\Delta V/\Delta x|$, small $\Delta x$ means large $E$"
+                },
+                {
+                    id: 8,
+                    question: "Where $V$ constant, $E$:",
+                    options: ["Zero", "Maximum", "Minimum", "Constant"],
+                    correctAnswer: 0,
+                    explanation: "$dV/dr = 0 \Rightarrow E = 0$"
+                },
+                {
+                    id: 9,
+                    question: "If $V(r) = V_0 e^{-r/a}$, $E(r)$ at $r=a$:",
+                    options: ["$V_0/e a$", "$-V_0/e a$", "$V_0/a$", "$-V_0/a$"],
+                    correctAnswer: 0,
+                    explanation: "$E = -dV/dr = (V_0/a)e^{-r/a}$. At $r=a$: $E = (V_0/a)e^{-1} = V_0/e a$"
+                },
+                {
+                    id: 10,
+                    question: "Field direction is:",
+                    options: ["Down potential gradient", "Up potential gradient", "Along equipotential", "Random"],
+                    correctAnswer: 0,
+                    explanation: "$E = -\nabla V$, so points toward decreasing $V$"
+                },
+                {
+                    id: 11,
+                    question: "If $V$ increases linearly with $x$, electric field:",
+                    options: ["Constant", "Zero", "Increases", "Decreases"],
+                    correctAnswer: 0,
+                    explanation: "$V = mx + c$, $E = -dV/dx = -m$ (constant)"
+                },
+                {
+                    id: 12,
+                    question: "At point where $dV/dr = 0$ but $d^2V/dr^2 \\neq 0$, field is:",
+                    options: ["Zero", "Maximum", "Minimum", "Changing"],
+                    correctAnswer: 0,
+                    explanation: "$E = -dV/dr = 0$ at that point"
+                }
+            ],
+            equipotential: [
+                {
+                    id: 1,
+                    question: "Work done moving charge on equipotential surface:",
+                    options: ["Zero", "$qV$", "$qE$", "$qV^2$"],
+                    correctAnswer: 0,
+                    explanation: "$W = q\Delta V = 0$ on equipotential"
+                },
+                {
+                    id: 2,
+                    question: "Field lines are always ____ to equipotential surfaces:",
+                    options: ["Perpendicular", "Parallel", "At 45°", "Tangential"],
+                    correctAnswer: 0,
+                    explanation: "Field ⊥ equipotential surfaces"
+                },
+                {
+                    id: 3,
+                    question: "Conductor surface in equilibrium is:",
+                    options: ["Equipotential", "Not equipotential", "Varying potential", "Maximum potential"],
+                    correctAnswer: 0,
+                    explanation: "Conductor surface is equipotential"
+                },
+                {
+                    id: 4,
+                    question: "Equipotentials for point charge are:",
+                    options: ["Concentric spheres", "Parallel planes", "Coaxial cylinders", "Concentric circles"],
+                    correctAnswer: 0,
+                    explanation: "Spherical symmetry: equipotentials are spheres"
+                },
+                {
+                    id: 5,
+                    question: "Equipotentials for uniform field are:",
+                    options: ["Parallel planes", "Concentric spheres", "Coaxial cylinders", "Parallel lines"],
+                    correctAnswer: 0,
+                    explanation: "Uniform field: equipotentials are parallel planes ⊥ to field"
+                },
+                {
+                    id: 6,
+                    question: "Closely spaced equipotentials indicate:",
+                    options: ["Strong field", "Weak field", "Zero field", "Uniform field"],
+                    correctAnswer: 0,
+                    explanation: "$E = |\Delta V/\Delta x|$, small Δx means large E"
+                },
+                {
+                    id: 7,
+                    question: "Can equipotential surfaces intersect?",
+                    options: ["No", "Yes", "Sometimes", "Only at charges"],
+                    correctAnswer: 0,
+                    explanation: "Intersection would give same point two different potentials"
+                },
+                {
+                    id: 8,
+                    question: "Inside conductor cavity with no charge, potential is:",
+                    options: ["Constant", "Varies linearly", "Varies as 1/r", "Zero"],
+                    correctAnswer: 0,
+                    explanation: "Entire cavity is equipotential (Faraday cage)"
+                },
+                {
+                    id: 9,
+                    question: "Equipotential surfaces are ____ to field lines:",
+                    options: ["Perpendicular", "Parallel", "At 30°", "At 60°"],
+                    correctAnswer: 0,
+                    explanation: "Always perpendicular"
+                }
+            ],
+            electronvolt: [
+                {
+                    id: 1,
+                    question: "1 electron volt (eV) =",
+                    options: ["$1.6\times10^{-19}J$", "$1.6\times10^{-19}C$", "$1J$", "$1V$"],
+                    correctAnswer: 0,
+                    explanation: "Definition: 1 eV = 1.6×10⁻¹⁹ J"
+                },
+                {
+                    id: 2,
+                    question: "Kinetic energy of electron accelerated through 50V:",
+                    options: ["50eV", "100eV", "25eV", "1eV"],
+                    correctAnswer: 0,
+                    explanation: "$K = e\Delta V = 50eV$"
+                },
+                {
+                    id: 3,
+                    question: "Proton through 100V gains energy:",
+                    options: ["100eV", "200eV", "50eV", "1eV"],
+                    correctAnswer: 0,
+                    explanation: "$K = e\Delta V = 100eV$ (same as electron)"
+                },
+                {
+                    id: 4,
+                    question: "Alpha particle (He²⁺) through 100V gains:",
+                    options: ["200eV", "100eV", "400eV", "50eV"],
+                    correctAnswer: 0,
+                    explanation: "$q = 2e$, so $K = 2e\Delta V = 200eV$"
+                },
+                {
+                    id: 5,
+                    question: "Rest energy electron ≈",
+                    options: ["0.511MeV", "1.022MeV", "938MeV", "9.11MeV"],
+                    correctAnswer: 0,
+                    explanation: "$m_ec^2 = 0.511$ MeV"
+                },
+                {
+                    id: 6,
+                    question: "Temperature equivalent of 1 eV ≈",
+                    options: ["11,600K", "1,160K", "116,000K", "116K"],
+                    correctAnswer: 0,
+                    explanation: "$T = E/k_B = 1 \text{ eV} / (8.617\times10^{-5} \text{ eV/K}) ≈ 11,600$ K"
+                },
+                {
+                    id: 7,
+                    question: "Photon energy 2.5 eV corresponds to wavelength:",
+                    options: ["496 nm", "248 nm", "1240 nm", "620 nm"],
+                    correctAnswer: 0,
+                    explanation: "$\lambda = 1240/E = 1240/2.5 = 496$ nm (visible, blue-green)"
+                },
+                {
+                    id: 8,
+                    question: "If electron gains 1000 eV, velocity (non-relativistic):",
+                    options: ["$1.87\\times10^7$ m/s", "$3\\times10^8$ m/s", "$5.93\\times10^5$ m/s", "$1.4\\times10^7$ m/s"],
+                    correctAnswer: 0,
+                    explanation: "$v = \\sqrt{2K/m} = \\sqrt{2\\times1000\\times1.6\\times10^{-19}/9.11\\times10^{-31}} ≈ 1.87\\times10^7$ m/s"
+                }
+            ],
+            capacitor: [
+                {
+                    id: 1,
+                    question: "Capacitance $C = Q/V$. If $Q$ doubles while $V$ constant, $C$:",
+                    options: ["Doubles", "Halves", "Same", "Quadruples"],
+                    correctAnswer: 0,
+                    explanation: "$C = Q/V$, if $Q$ doubles, $C$ doubles (for constant $V$)"
+                },
+                {
+                    id: 2,
+                    question: "Parallel plate capacitor $C = \epsilon_0 A/d$. If $A$ doubles and $d$ halves, $C$:",
+                    options: ["Quadruples", "Doubles", "Halves", "Same"],
+                    correctAnswer: 0,
+                    explanation: "$C' \propto (2A)/(d/2) = 4A/d = 4C$"
+                },
+                {
+                    id: 3,
+                    question: "With dielectric constant $\epsilon_r$, capacitance becomes:",
+                    options: ["$\epsilon_r C_0$", "$C_0/\epsilon_r$", "$\sqrt{\epsilon_r} C_0$", "$C_0$"],
+                    correctAnswer: 0,
+                    explanation: "$C = \epsilon_r C_0$"
+                },
+                {
+                    id: 4,
+                    question: "Energy stored $U = \frac{1}{2}CV^2$. If $V$ doubles, $U$:",
+                    options: ["Quadruples", "Doubles", "Halves", "Same"],
+                    correctAnswer: 0,
+                    explanation: "$U \propto V^2$, so $(2V)^2 = 4V^2$, $U$ quadruples"
+                },
+                {
+                    id: 5,
+                    question: "Two capacitors $C_1$ and $C_2$ in series, equivalent $C$:",
+                    options: ["$C_1C_2/(C_1+C_2)$", "$C_1+C_2$", "$1/(C_1+C_2)$", "$(C_1+C_2)/2$"],
+                    correctAnswer: 0,
+                    explanation: "Series: $1/C = 1/C_1 + 1/C_2 \Rightarrow C = C_1C_2/(C_1+C_2)$"
+                },
+                {
+                    id: 6,
+                    question: "Two capacitors $C_1$ and $C_2$ in parallel, equivalent $C$:",
+                    options: ["$C_1+C_2$", "$C_1C_2/(C_1+C_2)$", "$1/(C_1+C_2)$", "$(C_1+C_2)/2$"],
+                    correctAnswer: 0,
+                    explanation: "Parallel: $C = C_1 + C_2$"
+                },
+                {
+                    id: 7,
+                    question: "Time constant $\tau = RC$. If $R$ doubles and $C$ halves, $\tau$:",
+                    options: ["Unchanged", "Doubles", "Halves", "Quadruples"],
+                    correctAnswer: 0,
+                    explanation: "$\tau' = (2R)(C/2) = RC = \tau$"
+                },
+                {
+                    id: 8,
+                    question: "After one time constant, capacitor charges to about:",
+                    options: ["63%", "37%", "50%", "95%"],
+                    correctAnswer: 0,
+                    explanation: "$Q = Q_0(1 - e^{-1}) \approx 0.63Q_0$"
+                },
+                {
+                    id: 9,
+                    question: "Capacitor blocks:",
+                    options: ["DC", "AC", "Both", "Neither"],
+                    correctAnswer: 0,
+                    explanation: "Capacitor blocks DC (open circuit after charging)"
+                },
+                {
+                    id: 10,
+                    question: "If dielectric inserted with battery connected:",
+                    options: ["$C$ increases, $Q$ increases", "$C$ increases, $Q$ decreases", "$C$ decreases, $Q$ increases", "$C$ decreases, $V$ decreases"],
+                    correctAnswer: 0,
+                    explanation: "Constant $V$: $C = \epsilon_r C_0$, $Q = CV = \epsilon_r C_0V$ increases"
+                },
+                {
+                    id: 11,
+                    question: "Energy density in capacitor $u =$",
+                    options: ["$\frac{1}{2}\epsilon_0 E^2$", "$\epsilon_0 E^2$", "$\frac{1}{2}E^2/\epsilon_0$", "$E^2/2\epsilon_0$"],
+                    correctAnswer: 0,
+                    explanation: "$u = \frac{1}{2}\epsilon_0 E^2$ (in vacuum)"
+                },
+                {
+                    id: 12,
+                    question: "If $C = 2\mu F$ and $V = 100V$, energy stored:",
+                    options: ["$0.01J$", "$0.02J$", "$0.005J$", "$0.1J$"],
+                    correctAnswer: 0,
+                    explanation: "$U = \frac{1}{2}CV^2 = 0.5 \times 2\times10^{-6} \times 10^4 = 0.01J$"
+                }
+            ]
+        };
+
+        // Progress tracking
+        let progress = {
+            potential: Array(electrostaticsMCQs.potential.length).fill(false),
+            "potential-difference": Array(electrostaticsMCQs["potential-difference"].length).fill(false),
+            "work-done": Array(electrostaticsMCQs["work-done"].length).fill(false),
+            gradient: Array(electrostaticsMCQs.gradient.length).fill(false),
+            equipotential: Array(electrostaticsMCQs.equipotential.length).fill(false),
+            electronvolt: Array(electrostaticsMCQs.electronvolt.length).fill(false),
+            capacitor: Array(electrostaticsMCQs.capacitor.length).fill(false)
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize the application
+            initApp();
+            
+            function initApp() {
+                // Set up event listeners for welcome screen
+                document.getElementById('start-btn').addEventListener('click', () => {
+                    document.getElementById('welcome-overlay').classList.add('hidden');
+                });
+                
+                // Hide welcome animation after delay
+                setTimeout(() => {
+                    document.getElementById('welcome-overlay').classList.add('hidden');
+                }, 5000);
+                
+                // Load progress from localStorage
+                loadProgress();
+                
+                // Set up tab navigation
+                setupTabs();
+                
+                // Set up event listeners
+                setupEventListeners();
+                
+                // Load MCQs
+                loadAllMCQs();
+                
+                // Update progress display
+                updateProgress();
+                
+                // Apply animations
+                applyAnimations();
+                
+                // Render KaTeX equations
+                renderKaTeX();
+            }
+            
+            function setupTabs() {
+                const tabButtons = document.querySelectorAll('.nav-btn[data-tab]');
+                const tabContents = document.querySelectorAll('.tab-content');
+                
+                tabButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        const tabId = button.getAttribute('data-tab');
+                        
+                        // Update active tab button
+                        tabButtons.forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+                        
+                        // Show active content
+                        tabContents.forEach(content => content.classList.remove('active'));
+                        document.getElementById(`${tabId}-tab`).classList.add('active');
+                        
+                        // Re-render KaTeX for new content
+                        setTimeout(renderKaTeX, 100);
+                    });
+                });
+            }
+            
+            function setupEventListeners() {
+                // Hamburger menu toggle
+                document.getElementById('menu-toggle').addEventListener('click', toggleMenu);
+                
+                // Theme toggle
+                document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+                
+                // Refresh buttons for each topic
+                document.getElementById('refresh-potential').addEventListener('click', () => loadTopicMCQs('potential'));
+                document.getElementById('refresh-potential-difference').addEventListener('click', () => loadTopicMCQs('potential-difference'));
+                document.getElementById('refresh-work-done').addEventListener('click', () => loadTopicMCQs('work-done'));
+                document.getElementById('refresh-gradient').addEventListener('click', () => loadTopicMCQs('gradient'));
+                document.getElementById('refresh-equipotential').addEventListener('click', () => loadTopicMCQs('equipotential'));
+                document.getElementById('refresh-electronvolt').addEventListener('click', () => loadTopicMCQs('electronvolt'));
+                document.getElementById('refresh-capacitor').addEventListener('click', () => loadTopicMCQs('capacitor'));
+                
+                // Reset progress button
+                document.getElementById('reset-progress').addEventListener('click', resetProgress);
+            }
+            
+            function toggleMenu() {
+                const menuToggle = document.getElementById('menu-toggle');
+                const mainNav = document.getElementById('main-nav');
+                
+                menuToggle.classList.toggle('active');
+                mainNav.classList.toggle('active');
+            }
+            
+            function toggleTheme() {
+                const themeToggle = document.getElementById('theme-toggle');
+                document.body.classList.toggle('dark-mode');
+                themeToggle.classList.toggle('dark');
+                saveToLocalStorage('darkMode', document.body.classList.contains('dark-mode'));
+            }
+            
+            function loadAllMCQs() {
+                // Load MCQs for each topic
+                loadTopicMCQs('potential');
+                loadTopicMCQs('potential-difference');
+                loadTopicMCQs('work-done');
+                loadTopicMCQs('gradient');
+                loadTopicMCQs('equipotential');
+                loadTopicMCQs('electronvolt');
+                loadTopicMCQs('capacitor');
+            }
+            
+            function loadTopicMCQs(topic) {
+                const container = document.getElementById(`${topic}-mcqs-container`);
+                if (!container) return;
+                
+                container.innerHTML = '';
+                
+                // Randomize order of MCQs for this topic
+                const shuffledMCQs = [...electrostaticsMCQs[topic]].sort(() => Math.random() - 0.5);
+                
+                shuffledMCQs.forEach(mcq => {
+                    const mcqCard = createMCQCard(mcq, topic);
+                    container.appendChild(mcqCard);
+                });
+                
+                // Re-render KaTeX
+                setTimeout(renderKaTeX, 100);
+            }
+            
+            function createMCQCard(mcq, topic) {
+                const card = document.createElement('div');
+                card.className = 'card mcq-card fade-in';
+                card.id = `${topic}-mcq-${mcq.id}`;
+                
+                // Check if this MCQ has been completed
+                const isCompleted = progress[topic][mcq.id - 1];
+                
+                // Randomize option order
+                const options = [...mcq.options];
+                const correctAnswer = mcq.correctAnswer;
+                const correctOption = options[correctAnswer];
+                
+                // Shuffle options
+                for (let i = options.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [options[i], options[j]] = [options[j], options[i]];
+                }
+                
+                // Find new index of correct answer after shuffling
+                const newCorrectIndex = options.indexOf(correctOption);
+                
+                card.innerHTML = `
+                    <div class="mcq-info">
+                        <div class="mcq-id">MCQ #${mcq.id} ${isCompleted ? '<i class="fas fa-check" style="color: var(--success); margin-left: 4.05px;"></i>' : ''}</div>
+                        <div class="mcq-subject">${getTopicName(topic)}</div>
+                        <div class="mcq-question">${mcq.question}</div>
+                        <div class="mcq-options">
+                            ${options.map((option, index) => `
+                                <div class="mcq-option" data-option="${index}" data-correct="${index === newCorrectIndex}">${String.fromCharCode(65 + index)}) ${option}</div>
+                            `).join('')}
+                        </div>
+                        <div class="mcq-explanation">
+                            <div class="explanation-title">Explanation:</div>
+                            <div class="explanation-content">${mcq.explanation}</div>
+                        </div>
+                    </div>
+                    <div class="mcq-actions">
+                        <button class="btn btn-primary check-answer-btn">
+                            <i class="fas fa-check"></i> Check Answer
+                        </button>
+                        <button class="btn btn-secondary show-explanation-btn">
+                            <i class="fas fa-lightbulb"></i> Show Explanation
+                        </button>
+                    </div>
+                `;
+                
+                // Add event listeners
+                const checkAnswerBtn = card.querySelector('.check-answer-btn');
+                const showExplanationBtn = card.querySelector('.show-explanation-btn');
+                const optionElements = card.querySelectorAll('.mcq-option');
+                
+                let selectedOption = null;
+                
+                // If already completed, show the correct answer
+                if (isCompleted) {
+                    const correctOptionElement = card.querySelector('.mcq-option[data-correct="true"]');
+                    correctOptionElement.classList.add('correct');
+                    
+                    optionElements.forEach(option => {
+                        option.style.pointerEvents = 'none';
+                    });
+                    
+                    checkAnswerBtn.disabled = true;
+                    checkAnswerBtn.innerHTML = '<i class="fas fa-check"></i> Completed';
+                } else {
+                    optionElements.forEach(option => {
+                        option.addEventListener('click', () => {
+                            optionElements.forEach(opt => opt.classList.remove('selected'));
+                            option.classList.add('selected');
+                            selectedOption = parseInt(option.getAttribute('data-option'));
+                        });
+                    });
+                    
+                    checkAnswerBtn.addEventListener('click', () => {
+                        if (selectedOption === null) {
+                            alert('Please select an answer first!');
+                            return;
+                        }
+                        
+                        optionElements.forEach(option => {
+                            option.classList.remove('correct', 'incorrect');
+                        });
+                        
+                        const correctOptionElement = card.querySelector('.mcq-option[data-correct="true"]');
+                        correctOptionElement.classList.add('correct');
+                        
+                        const selectedOptionElement = card.querySelector(`.mcq-option[data-option="${selectedOption}"]`);
+                        const isCorrect = selectedOptionElement.getAttribute('data-correct') === 'true';
+                        
+                        if (!isCorrect) {
+                            selectedOptionElement.classList.add('incorrect');
+                        } else {
+                            // Mark as completed
+                            progress[topic][mcq.id - 1] = true;
+                            saveProgress();
+                            updateProgress();
+                            
+                            const mcqId = card.querySelector('.mcq-id');
+                            mcqId.innerHTML = `MCQ #${mcq.id} <i class="fas fa-check" style="color: var(--success); margin-left: 4.05px;"></i>`;
+                            
+                            optionElements.forEach(option => {
+                                option.style.pointerEvents = 'none';
+                            });
+                            
+                            checkAnswerBtn.disabled = true;
+                            checkAnswerBtn.innerHTML = '<i class="fas fa-check"></i> Completed';
+                        }
+                    });
+                }
+                
+                showExplanationBtn.addEventListener('click', () => {
+                    const explanation = card.querySelector('.mcq-explanation');
+                    explanation.classList.toggle('show');
+                });
+                
+                return card;
+            }
+            
+            function getTopicName(topic) {
+                const names = {
+                    potential: 'Electric Potential',
+                    "potential-difference": 'Potential Difference',
+                    "work-done": 'Work Done in Electric Field',
+                    gradient: 'Field-Potential Gradient',
+                    equipotential: 'Equipotential Surface',
+                    electronvolt: 'Electron Volt',
+                    capacitor: 'Capacitor Charging/Discharging'
+                };
+                return names[topic] || topic;
+            }
+            
+            function updateProgress() {
+                // Calculate completion counts
+                const potentialCompleted = progress.potential.filter(Boolean).length;
+                const potentialDifferenceCompleted = progress["potential-difference"].filter(Boolean).length;
+                const workDoneCompleted = progress["work-done"].filter(Boolean).length;
+                const gradientCompleted = progress.gradient.filter(Boolean).length;
+                const equipotentialCompleted = progress.equipotential.filter(Boolean).length;
+                const electronvoltCompleted = progress.electronvolt.filter(Boolean).length;
+                const capacitorCompleted = progress.capacitor.filter(Boolean).length;
+                
+                const totalCompleted = potentialCompleted + potentialDifferenceCompleted + workDoneCompleted + 
+                                    gradientCompleted + equipotentialCompleted + electronvoltCompleted + capacitorCompleted;
+                
+                // Calculate accuracy
+                const totalAttempted = Object.values(progress).flat().filter(x => x !== false).length;
+                const accuracy = totalAttempted > 0 ? Math.round((totalCompleted / totalAttempted) * 100) : 0;
+                
+                // Update stats
+                document.getElementById('completed-mcqs').textContent = totalCompleted;
+                document.getElementById('accuracy').textContent = `${accuracy}%`;
+                
+                // Update topic progress
+                document.getElementById('potential-completed').textContent = potentialCompleted;
+                document.getElementById('potential-progress').style.width = `${(potentialCompleted / 15) * 100}%`;
+                
+                document.getElementById('potential-difference-completed').textContent = potentialDifferenceCompleted;
+                document.getElementById('potential-difference-progress').style.width = `${(potentialDifferenceCompleted / 12) * 100}%`;
+                
+                document.getElementById('work-done-completed').textContent = workDoneCompleted;
+                document.getElementById('work-done-progress').style.width = `${(workDoneCompleted / 12) * 100}%`;
+                
+                document.getElementById('gradient-completed').textContent = gradientCompleted;
+                document.getElementById('gradient-progress').style.width = `${(gradientCompleted / 12) * 100}%`;
+                
+                document.getElementById('equipotential-completed').textContent = equipotentialCompleted;
+                document.getElementById('equipotential-progress').style.width = `${(equipotentialCompleted / 9) * 100}%`;
+                
+                document.getElementById('electronvolt-completed').textContent = electronvoltCompleted;
+                document.getElementById('electronvolt-progress').style.width = `${(electronvoltCompleted / 8) * 100}%`;
+                
+                document.getElementById('capacitor-completed').textContent = capacitorCompleted;
+                document.getElementById('capacitor-progress').style.width = `${(capacitorCompleted / 12) * 100}%`;
+                
+                // Update overall progress
+                document.getElementById('overall-completed').textContent = totalCompleted;
+                document.getElementById('overall-progress').style.width = `${(totalCompleted / 80) * 100}%`;
+                
+                // Update summary
+                document.getElementById('potential-summary').textContent = potentialCompleted;
+                document.getElementById('potential-difference-summary').textContent = potentialDifferenceCompleted;
+                document.getElementById('work-done-summary').textContent = workDoneCompleted;
+                document.getElementById('gradient-summary').textContent = gradientCompleted;
+                document.getElementById('equipotential-summary').textContent = equipotentialCompleted;
+                document.getElementById('electronvolt-summary').textContent = electronvoltCompleted;
+                document.getElementById('capacitor-summary').textContent = capacitorCompleted;
+                
+                document.getElementById('potential-summary-progress').style.width = `${(potentialCompleted / 15) * 100}%`;
+                document.getElementById('potential-difference-summary-progress').style.width = `${(potentialDifferenceCompleted / 12) * 100}%`;
+                document.getElementById('work-done-summary-progress').style.width = `${(workDoneCompleted / 12) * 100}%`;
+                document.getElementById('gradient-summary-progress').style.width = `${(gradientCompleted / 12) * 100}%`;
+                document.getElementById('equipotential-summary-progress').style.width = `${(equipotentialCompleted / 9) * 100}%`;
+                document.getElementById('electronvolt-summary-progress').style.width = `${(electronvoltCompleted / 8) * 100}%`;
+                document.getElementById('capacitor-summary-progress').style.width = `${(capacitorCompleted / 12) * 100}%`;
+            }
+            
+            function resetProgress() {
+                if (confirm('Are you sure you want to reset all progress? This action cannot be undone.')) {
+                    progress = {
+                        potential: Array(15).fill(false),
+                        "potential-difference": Array(12).fill(false),
+                        "work-done": Array(12).fill(false),
+                        gradient: Array(12).fill(false),
+                        equipotential: Array(9).fill(false),
+                        electronvolt: Array(8).fill(false),
+                        capacitor: Array(12).fill(false)
+                    };
+                    saveProgress();
+                    updateProgress();
+                    loadAllMCQs();
+                }
+            }
+            
+            function saveProgress() {
+                saveToLocalStorage('electrostaticsProgress', progress);
+            }
+            
+            function loadProgress() {
+                const savedProgress = getFromLocalStorage('electrostaticsProgress');
+                if (savedProgress) {
+                    // Ensure all arrays have correct length
+                    progress = {
+                        potential: savedProgress.potential || Array(15).fill(false),
+                        "potential-difference": savedProgress["potential-difference"] || Array(12).fill(false),
+                        "work-done": savedProgress["work-done"] || Array(12).fill(false),
+                        gradient: savedProgress.gradient || Array(12).fill(false),
+                        equipotential: savedProgress.equipotential || Array(9).fill(false),
+                        electronvolt: savedProgress.electronvolt || Array(8).fill(false),
+                        capacitor: savedProgress.capacitor || Array(12).fill(false)
+                    };
+                }
+            }
+            
+            function applyAnimations() {
+                const elements = document.querySelectorAll('.panel, .card, .nav-btn');
+                elements.forEach((element, index) => {
+                    setTimeout(() => {
+                        element.classList.add('fade-in');
+                    }, index * 50);
+                });
+            }
+            
+            function renderKaTeX() {
+                if (typeof renderMathInElement !== 'undefined') {
+                    renderMathInElement(document.body, {
+                        delimiters: [
+                            {left: '$$', right: '$$', display: true},
+                            {left: '$', right: '$', display: false},
+                            {left: '\\(', right: '\\)', display: false},
+                            {left: '\\[', right: '\\]', display: true}
+                        ],
+                        throwOnError: false
+                    });
+                }
+            }
+            
+            function saveToLocalStorage(key, value) {
+                try {
+                    localStorage.setItem(key, JSON.stringify(value));
+                } catch (e) {
+                    console.error('Error saving to localStorage:', e);
+                }
+            }
+            
+            function getFromLocalStorage(key) {
+                try {
+                    const value = localStorage.getItem(key);
+                    return value ? JSON.parse(value) : null;
+                } catch (e) {
+                    console.error('Error reading from localStorage:', e);
+                    return null;
+                }
+            }
+            
+            // Load dark mode setting
+            const darkMode = getFromLocalStorage('darkMode');
+            if (darkMode) {
+                document.body.classList.add('dark-mode');
+                document.getElementById('theme-toggle').classList.add('dark');
+            }
+        });
+    </script>
+</body>
+</html>
